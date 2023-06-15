@@ -1,53 +1,33 @@
 #include "PhoneBook.hpp"
 
-Contact::Contact()
-{
-    this->_phoneNbr = "";
-    this->_firstName = "";
-    this->_nickName = "";
-    this->_phoneNbr = "";
-    this->_darketSecret = "";
-    this->_index = "";
-    this->_exist = 0;
-}
 
-PhoneBook::PhoneBook(void)
+PhoneBook::PhoneBook()
 {
-    for(int i = 0; i < 8; i++)
-        (void)_contacts[i];
-}
-
-std::string  PhoneBook::print(std::string str)
-{
-    if (str.length() > 10)
-    {
-        str.resize(10, ' ');
-        str.back() = '.';
-    }
-    else
-        str.resize(10, ' ');
-    return (str);
-}
-
-void    PhoneBook::search(int index)
-{
-    if (index < 0 || index > 8)
-        std::cerr << "Index out of range" << std::endl;
-    else if (!this->_contacts[index].i_exist())
-        std::cerr << "Contact doesn't exist"<< std::endl;
-    else
-    {
-        std::cout << this->print(_contacts[index].get_index()) << '|';
-        std::cout << this->print(_contacts[index].get_firstName()) << '|';
-        std::cout << this->print(_contacts[index].get_lastName()) << '|';
-        std::cout << this->print(_contacts[index].get_nickName()) <<std::endl;
-    }
+    this->_contactSize = 0;
+    this->_lastIndex = 0;
 }
 
 int main()
 {
     PhoneBook Hatim;
+    std::string input = "";
 
-
-
+    while (1)
+    {
+        std::cout << "Choose you action: (ADD) or (SEARCH) or (EXIT)" << std::endl;
+        while(input.empty())
+        {
+            std::cin >> input;
+            if (input == "ADD")
+                Hatim.Add();
+            else if (input == "SEARCH")
+                Hatim.Search();
+            else
+            {
+                std::cerr << "Invalid action" << std::endl;
+                input.clear();
+            }
+        }
+        input.clear();
+    }
 }

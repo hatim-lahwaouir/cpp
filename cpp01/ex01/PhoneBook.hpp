@@ -1,51 +1,48 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/14 15:12:43 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/06/14 18:33:28 by hlahwaou         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "iostream"
 
 class Contact
 {
     std::string _firstName;
-    std::string _lastName;
+    std::string _lasttName;
     std::string _nickName;
-    std::string _phoneNbr;
-    std::string _darketSecret;
-    std::string _index;
-    int         _exist;
+    std::string _phoneNumber;
+    std::string _darkestSecret;
+    int         _index;
     public:
-            Contact();
-            int         i_exist();
-            std::string get_index();
+        Contact();
+        // geters
             std::string get_firstName();
             std::string get_lastName();
             std::string get_nickName();
-            void        set_index(std::string str);
+            std::string get_phoneNumber();
+        // seters
             void        set_firstName(std::string str);
             void        set_lastName(std::string str);
             void        set_nickName(std::string str);
-            void        set_darkSecret(std::string str);
+            void        set_phoneNumber(std::string str);
+            void        set_darkestSecret(std::string str);
 };
 
-class PhoneBook
+class   PhoneBook
 {
-    std::string print(std::string);
-    Contact _contacts[8];
-    void    get_firstName(int index);
-    void    get_lastName(int index);
-    void    get_nickName(int index);
-    void    get_phoneNumber(int index);
-    void    get_drackSecret(int index);
+    Contact     _contacts[8];
+    // index Of Last Contact
+    void        set_firstName(int index);
+    void        set_lastName(int index);
+    void        set_nickName(int index);
+    void        set_phoneNumber(int index);
+    void        set_darkestSecret(int index);
+    int         _contactSize;
+    int         _lastIndex;
+    // display function of search
+    void        display();
+    void        printFormat(std::string str);
+    // all degits
+    bool        isDigits(std::string str);
     public:
-            PhoneBook();
-            void    add();
-            void    search(int index);
+        PhoneBook();
+        // actions
+        void    Add();
+        void    Search();
+        void    Exit();
 };

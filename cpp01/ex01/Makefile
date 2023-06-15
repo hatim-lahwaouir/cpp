@@ -1,5 +1,5 @@
-NAME = PhoneBook 
-SRCS = PhoneBook.cpp ContactMethods.cpp
+NAME = PhoneBook
+SRCS = ContactsMethods.cpp PhoneBook.cpp PhoneBook_addAction.cpp PhoneBook_searchAction.cpp
 OBJS = ${SRCS:%.cpp=%.o}
 CC = c++
 FLAGS = -Wall -Wextra -Werror
