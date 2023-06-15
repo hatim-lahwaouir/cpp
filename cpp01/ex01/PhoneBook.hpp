@@ -32,6 +32,7 @@ class   PhoneBook
     void        set_nickName(int index);
     void        set_phoneNumber(int index);
     void        set_darkestSecret(int index);
+    void        infoOfIndex();
     int         _contactSize;
     int         _lastIndex;
     // display function of search

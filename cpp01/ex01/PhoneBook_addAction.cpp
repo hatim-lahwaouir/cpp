@@ -42,13 +42,14 @@ void    PhoneBook::set_phoneNumber(int index)
 {
     std::string input = "";
 
-    std::cout << "Enter your phone number:  ";
     while (1)
     {
+        std::cout << "Enter your phone number:  ";
         input.clear();
         std::cin >> input;
         if (this->isDigits(input))
             break;
+        std::cerr << "Invalid number" << std::endl;
     }
     this->_contacts[index].set_phoneNumber(input);
 }
@@ -71,4 +72,6 @@ void    PhoneBook::Add()
     this->set_phoneNumber(this->_lastIndex);
     this->set_darkestSecret(this->_lastIndex);
     this->_lastIndex++;
+    this->_lastIndex = this->_lastIndex * (this->_lastIndex < 8);
+    this->_contactSize = this->_contactSize + 1 * (this->_contactSize < 8);
 }
