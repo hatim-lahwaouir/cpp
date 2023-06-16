@@ -14,14 +14,18 @@ int main()
 
     while (1)
     {
-        std::cout << "Choose you action: (ADD) or (SEARCH) or (EXIT)" << std::endl;
         while(input.empty())
         {
+            std::cout << "Choose you action: (ADD) or (SEARCH) or (EXIT): ";
             std::cin >> input;
+            if (std::cin.eof())
+                exit(0);
             if (input == "ADD")
                 Hatim.Add();
             else if (input == "SEARCH")
                 Hatim.Search();
+            else if (input == "EXIT")
+                exit(0);
             else
             {
                 std::cerr << "Invalid action" << std::endl;

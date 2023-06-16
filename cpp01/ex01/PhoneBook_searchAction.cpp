@@ -20,7 +20,7 @@ void    PhoneBook::display()
     index = 0;
     if (this->_contactSize != 0)
         std::cout << "   index  |" << "first name|" << "last name |" << " nickname " << std::endl;
-    while (index < this->_lastIndex)
+    while (index < this->_contactSize)
     {
         std::cout << "    " << index << "     " "|";
         this->printFormat(this->_contacts[index].get_firstName()); std:: cout << "|";
@@ -32,7 +32,8 @@ void    PhoneBook::display()
 
 void    PhoneBook::infoOfIndex()
 {
-    int index;
+    int         index;
+    std::string input;
 
     if (this->_contactSize == 0)
     {
@@ -41,11 +42,19 @@ void    PhoneBook::infoOfIndex()
     }
     while(1)
     {
-        std::cout << "Enter the index you are searching for:" << std::endl; 
-        std::cin >> index;
-        std::cout << this->_lastIndex << std::endl;
-        if (std::cin.fail() || index > this->_lastIndex || index < 0)
-            std::cerr << "Invalid Index" << std::endl;
+        std::cout << "Enter the index you are searching for:  "; 
+        std::cin >> input;
+        if (std::cin.eof())
+            exit(0);
+        if(input.length() == 1 && isdigit(input[0]))
+            index = input[0] - 48;
+        else
+        {
+            std::cerr << "Invalid index" << std::endl;
+            continue;
+        }
+        if (index > this->_contactSize - 1 || index < 0)
+            std::cerr << "Invalid index" << std::endl;
         else
             break;
     }
@@ -53,6 +62,7 @@ void    PhoneBook::infoOfIndex()
     std::cout << "Last name: " << this->_contacts[index].get_lastName() << std::endl;
     std::cout << "Nickname: " << this->_contacts[index].get_nickName() << std::endl;
     std::cout << "Phone number: " << this->_contacts[index].get_phoneNumber() << std::endl;
+    std::cout << "Darkest secret: " << this->_contacts[index].get_darkestSecret() << std::endl;
 }
 
 void    PhoneBook::Search()

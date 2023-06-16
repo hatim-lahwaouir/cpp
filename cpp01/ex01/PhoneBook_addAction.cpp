@@ -17,6 +17,8 @@ void    PhoneBook::set_firstName(int index)
 
     std::cout << "Enter your first name:  ";
     std::cin >> input;
+    if (std::cin.eof())
+        exit(0);
     this->_contacts[index].set_firstName(input);
 }
 
@@ -26,6 +28,8 @@ void    PhoneBook::set_lastName(int index)
 
     std::cout << "Enter your last name:  ";
     std::cin >> input;
+    if (std::cin.eof())
+        exit(0);
     this->_contacts[index].set_lastName(input);
 }
 
@@ -35,6 +39,8 @@ void    PhoneBook::set_nickName(int index)
 
     std::cout << "Enter your nickname:  ";
     std::cin >> input;
+    if (std::cin.eof())
+        exit(0);
     this->_contacts[index].set_nickName(input);
 }
 
@@ -47,6 +53,8 @@ void    PhoneBook::set_phoneNumber(int index)
         std::cout << "Enter your phone number:  ";
         input.clear();
         std::cin >> input;
+        if (std::cin.eof())
+            exit(0);
         if (this->isDigits(input))
             break;
         std::cerr << "Invalid number" << std::endl;
@@ -60,6 +68,8 @@ void    PhoneBook::set_darkestSecret(int index)
 
     std::cout << "Enter your darkest secret:  ";
     std::cin >> input;
+    if (std::cin.eof())
+        exit(0);
     this->_contacts[index].set_darkestSecret(input);
 }
 
@@ -72,6 +82,5 @@ void    PhoneBook::Add()
     this->set_phoneNumber(this->_lastIndex);
     this->set_darkestSecret(this->_lastIndex);
     this->_lastIndex++;
-    this->_lastIndex = this->_lastIndex * (this->_lastIndex < 8);
     this->_contactSize = this->_contactSize + 1 * (this->_contactSize < 8);
 }

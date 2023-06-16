@@ -29,6 +29,12 @@ std::string Contact::get_phoneNumber()
 {
     return (this->_phoneNumber);
 }
+
+std::string Contact::get_darkestSecret()
+{
+    return (this->_darkestSecret);
+}
+
 void    Contact::set_firstName(std::string str)
 {
     this->_firstName = str;

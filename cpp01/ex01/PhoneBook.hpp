@@ -1,27 +1,8 @@
-#include "iostream"
+#ifndef PHONEBOOK_HPP
+#define PHONEBOOK_HPP
 
-class Contact
-{
-    std::string _firstName;
-    std::string _lasttName;
-    std::string _nickName;
-    std::string _phoneNumber;
-    std::string _darkestSecret;
-    int         _index;
-    public:
-        Contact();
-        // geters
-            std::string get_firstName();
-            std::string get_lastName();
-            std::string get_nickName();
-            std::string get_phoneNumber();
-        // seters
-            void        set_firstName(std::string str);
-            void        set_lastName(std::string str);
-            void        set_nickName(std::string str);
-            void        set_phoneNumber(std::string str);
-            void        set_darkestSecret(std::string str);
-};
+# include "Contact.hpp"
+
 
 class   PhoneBook
 {
@@ -47,3 +28,5 @@ class   PhoneBook
         void    Search();
         void    Exit();
 };
+
+#endif

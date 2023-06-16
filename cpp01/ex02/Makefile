@@ -1,10 +1,10 @@
-NAME = PhoneBook
-SRCS = ContactsMethods.cpp PhoneBook.cpp PhoneBook_addAction.cpp PhoneBook_searchAction.cpp
+NAME = generatLogfile
+SRCS = Account.cpp tests.cpp
 OBJS = ${SRCS:%.cpp=%.o}
 CC = c++
 FLAGS = -Wall -Wextra -Werror
 STD = -std=c++98
-INCLUDE = Contact.hpp PhoneBook.hpp
+INCLUDE = Account.hpp
 
 all : $(NAME)
 
