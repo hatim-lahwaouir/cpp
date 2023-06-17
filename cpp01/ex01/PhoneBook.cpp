@@ -17,7 +17,7 @@ int main()
         while(input.empty())
         {
             std::cout << "Choose you action: (ADD) or (SEARCH) or (EXIT): ";
-            std::cin >> input;
+            std::getline(std::cin, input);
             if (std::cin.eof())
                 exit(0);
             if (input == "ADD")

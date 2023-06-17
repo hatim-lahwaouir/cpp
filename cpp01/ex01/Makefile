@@ -8,7 +8,7 @@ INCLUDE = Contact.hpp PhoneBook.hpp
 
 all : $(NAME)
 
-.PHONY : clean fclean re
+.PHONY : PhoneBook clean fclean re
 
 $(NAME) : $(OBJS)
 	$(CC) $(FLAGS) $(STD) $(OBJS) -o $(NAME)

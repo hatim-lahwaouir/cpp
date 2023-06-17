@@ -43,7 +43,7 @@ void    PhoneBook::infoOfIndex()
     while(1)
     {
         std::cout << "Enter the index you are searching for:  "; 
-        std::cin >> input;
+        std::getline(std::cin, input);
         if (std::cin.eof())
             exit(0);
         if(input.length() == 1 && isdigit(input[0]))

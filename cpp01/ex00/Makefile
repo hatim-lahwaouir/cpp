@@ -7,7 +7,7 @@ STD = -std=c++98
 
 all : $(NAME)
 
-.PHONY : clean fclean re
+.PHONY : megaphone clean fclean re
 
 $(NAME) : $(OBJS)
 	$(CC) $(FLAGS) $(STD) $(OBJS) -o $(NAME)

@@ -8,7 +8,7 @@ INCLUDE = Account.hpp
 
 all : $(NAME)
 
-.PHONY : clean fclean re
+.PHONY :generatLogfile clean fclean re
 
 $(NAME) : $(OBJS)
 	$(CC) $(FLAGS) $(STD) $(OBJS) -o $(NAME)

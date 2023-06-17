@@ -6,14 +6,12 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 12:01:18 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/06/16 16:25:39 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/06/17 11:46:16 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Account.hpp"
 #include "iostream"
-#include "ctime"
-#include <iomanip>
 
 int Account::_nbAccounts = 0;
 int Account::_totalAmount = 0;
@@ -23,9 +21,14 @@ int Account::_totalNbWithdrawals = 0;
 void    Account::_displayTimestamp()
 {
     std::time_t currentTime = std::time(nullptr);
-    std::tm* timeInfo = std::localtime(&currentTime);
-    
-    std::cout << "[" << std::put_time(timeInfo, "%Y%m%d_%H%M%S") << "] ";
+    struct tm *timeinfo = localtime(&currentTime);
+    if (!timeinfo)
+        exit(1);
+    std::cout<<"[" << timeinfo->tm_year + 1900 ;
+    if (timeinfo->tm_mon < 10)
+        std::cout << "0";        
+    std::cout << timeinfo->tm_mon;
+    std::cout << "_" << timeinfo->tm_mday << timeinfo->tm_hour << timeinfo->tm_min << timeinfo->tm_sec <<"] ";
 }
 
 
