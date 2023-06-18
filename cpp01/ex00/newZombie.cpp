@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   newZombie.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/18 11:20:06 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/06/18 11:42:53 by hlahwaou         ###   ########.fr       */
+/*   Created: 2023/06/18 11:35:12 by hlahwaou          #+#    #+#             */
+/*   Updated: 2023/06/18 11:35:19 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-Zombie::Zombie(std::string  name)
+Zombie* newZombie( std::string name )
 {
-    _name = name;
-}
+    Zombie  *ptr;
 
-Zombie::~Zombie()
-{
-    std::cout << _name << std::endl;
-}
-
-void    Zombie::announce() const
-{
-    std::cout << _name << ": BraiiiiiiinnnzzzZ..." <<std::endl;
+    ptr = new Zombie(name);
+    if (ptr == nullptr)
+        return (nullptr);
+    return (ptr);
 }

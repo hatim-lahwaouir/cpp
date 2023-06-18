@@ -1,5 +1,5 @@
 NAME = Zombies
-SRCS = main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
+SRCS = main.cpp Zombie.cpp zombieHorde.cpp
 OBJS = ${SRCS:%.cpp=%.o}
 CC = c++
 FLAGS = -Wall -Wextra -Werror
@@ -10,10 +10,10 @@ all : $(NAME)
 
 .PHONY : Zombies clean fclean re
 
-$(NAME) : $(OBJS)
+$(NAME) : $(OBJS) $(INCLUDE)
 	$(CC) $(FLAGS) $(STD) $(OBJS) -o $(NAME)
 
-%.o: %.cpp $(INCLUDE)
+%.o: %.cpp
 	$(CC) -Wall -Wextra -Werror -std=c++98 -c $< -o $@
 
 clean :
