@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Weapon.hpp                                         :+:      :+:    :+:   */
+/*   Weapon.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/18 12:39:01 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/06/22 03:38:03 by hlahwaou         ###   ########.fr       */
+/*   Created: 2023/06/22 01:17:50 by hlahwaou          #+#    #+#             */
+/*   Updated: 2023/06/22 02:01:12 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WEAPON_HPP
-#define WEAPON_HPP
+#include "Weapon.hpp"
 
-# include "iostream"
-
-class Weapon
+Weapon::Weapon(std::string name)
 {
-    std::string _type;
+    _type = name;
+}
 
-    public:
-        Weapon(std::string);
-        const std::string &getType() const;
-        void  setType(std::string);
-};
 
-#endif
+
+void    Weapon::setType(std::string name)
+{ 
+    _type = name; 
+}
+
+const   std::string &Weapon::getType() const
+{ 
+    return (_type); 
+}

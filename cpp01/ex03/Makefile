@@ -1,19 +1,19 @@
 NAME = violence
-SRCS = main.cpp
+SRCS = HumanA.cpp HumanB.cpp Weapon.cpp main.cpp
 OBJS = ${SRCS:%.cpp=%.o}
 CC = c++
 FLAGS = -Wall -Wextra -Werror
 STD = -std=c++98
-INCLUDE =
+INCLUDE = HumanA.hpp HumanB.hpp Violence.hpp Weapon.hpp
 
 all : $(NAME)
 
 .PHONY : violence clean fclean re
 
-$(NAME) : $(OBJS) $(INCLUDE)
+$(NAME) : $(OBJS) 
 	$(CC) $(FLAGS) $(STD) $(OBJS) -o $(NAME)
 
-%.o: %.cpp
+%.o: %.cpp $(INCLUDE)
 	$(CC) -Wall -Wextra -Werror -std=c++98 -c $< -o $@
 
 clean :
