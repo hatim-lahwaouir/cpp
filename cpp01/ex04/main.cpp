@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 02:35:15 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/06/23 02:43:22 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/06/23 02:50:54 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,10 @@ int main(int ac, char **av)
         return (in.close(), 1);
     }
     bufr = fileTobuffr(in);
-    writeTofile(out, bufr,s1, s2);
+    if (!s1.empty())
+        writeTofile(out, bufr,s1, s2);
+    else
+        out << bufr;
     out.close();
     in.close();
 }
