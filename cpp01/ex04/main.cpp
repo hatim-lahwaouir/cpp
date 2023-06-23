@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 02:35:15 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/06/23 02:41:33 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/06/23 02:43:22 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,10 @@ int main(int ac, char **av)
     }
     std::string     inputFile(av[1]);
     std::string     outputFile(inputFile + ".replace");
-    std::string     s1;
-    std::string     s2;
+    std::string     s1(av[2]);
+    std::string     s2(av[3]);
     std::string bufr;
 
-    s1 = av[2];
-    s2 = av[3];
     std::ifstream   in(inputFile, std::ifstream::in);
     if (!in.is_open())
     {
