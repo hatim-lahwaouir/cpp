@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 05:36:22 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/06/24 15:41:52 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/06/24 17:46:49 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,14 @@ void    Harl::complain(std::string comment)
             break;
         i++;
     }
-    if (i >= 3)
-        (this->*ptr[i])();
+
+    switch (i)
+    {
+    case 3:
+        std::cout << " Probably complaining about insignificant problems ]" <<std::endl;
+        break;
+    default:
+        while (i >= 0)
+            (this->*ptr[i--])();
+    }
 }

@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Harl.hpp                                           :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/23 05:32:33 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/06/24 15:41:02 by hlahwaou         ###   ########.fr       */
+/*   Created: 2023/06/23 22:35:52 by hlahwaou          #+#    #+#             */
+/*   Updated: 2023/06/24 17:42:27 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef  HARL_HPP
-#define HARL_HPP
+#include "Harl.hpp"
 
-# include "iostream"
-
-#endif
-
-class Harl
+int main(int ac, char **av)
 {
-    void        debug(void);
-    void        info(void);
-    void        warning(void);
-    void        error(void);
-    std::string _comments[4];
-    void    (Harl::*ptr[4])(void);
-    public:
-    void complain( std::string level);
-    Harl();
-};
+    Harl    hatim;
+
+    if (ac != 2)
+    {
+        std::cerr << "Invalid arguments" << std::endl;
+        return (1);
+    }
+    hatim.complain(av[1]);
+}

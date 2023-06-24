@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 22:35:52 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/06/23 23:12:52 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/06/24 15:40:27 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ int main()
     std::cout << "WARNING" << std::endl;
     hatim.complain("WARNING");
     std::cout << "ERROR" << std::endl;
-    hatim.complain("adas"); 
+    hatim.complain("ERROR"); 
 }
