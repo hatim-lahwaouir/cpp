@@ -8,7 +8,7 @@ INCLUDE = Zombie.hpp
 
 all : $(NAME)
 
-.PHONY : Zombies clean fclean re
+.PHONY :  clean fclean re
 
 $(NAME) : $(OBJS)
 	$(CC) $(FLAGS) $(STD) $(OBJS) -o $(NAME)

@@ -8,7 +8,7 @@ INCLUDE = main.hpp
 
 all : $(NAME)
 
-.PHONY : SedIsForLosers clean fclean re
+.PHONY : clean fclean re
 
 $(NAME) : $(OBJS) 
 	$(CC) $(FLAGS) $(STD) $(OBJS) -o $(NAME)

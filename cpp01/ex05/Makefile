@@ -1,19 +1,19 @@
-NAME = PTR_REF
-SRCS = main.cpp
+NAME = Harl
+SRCS = main.cpp Harl.cpp
 OBJS = ${SRCS:%.cpp=%.o}
 CC = c++
 FLAGS = -Wall -Wextra -Werror
 STD = -std=c++98
-INCLUDE =
+INCLUDE = Harl.hpp
 
 all : $(NAME)
 
 .PHONY : clean fclean re
 
-$(NAME) : $(OBJS) $(INCLUDE)
+$(NAME) : $(OBJS) 
 	$(CC) $(FLAGS) $(STD) $(OBJS) -o $(NAME)
 
-%.o: %.cpp
+%.o: %.cpp $(INCLUDE)
 	$(CC) -Wall -Wextra -Werror -std=c++98 -c $< -o $@
 
 clean :

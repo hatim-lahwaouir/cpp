@@ -8,7 +8,7 @@ INCLUDE = HumanA.hpp HumanB.hpp Violence.hpp Weapon.hpp
 
 all : $(NAME)
 
-.PHONY : violence clean fclean re
+.PHONY : clean fclean re
 
 $(NAME) : $(OBJS) 
 	$(CC) $(FLAGS) $(STD) $(OBJS) -o $(NAME)
