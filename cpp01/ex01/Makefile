@@ -10,10 +10,10 @@ all : $(NAME)
 
 .PHONY :  clean fclean re
 
-$(NAME) : $(OBJS) $(INCLUDE)
+$(NAME) : $(OBJS) 
 	$(CC) $(FLAGS) $(STD) $(OBJS) -o $(NAME)
 
-%.o: %.cpp
+%.o: %.cpp $(INCLUDE)
 	$(CC) -Wall -Wextra -Werror -std=c++98 -c $< -o $@
 
 clean :
