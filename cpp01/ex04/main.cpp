@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 02:35:15 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/06/23 02:50:54 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/06/30 14:02:21 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,23 +57,25 @@ int main(int ac, char **av)
     std::string     s2(av[3]);
     std::string bufr;
 
-    std::ifstream   in(inputFile, std::ifstream::in);
+    std::ifstream   in;
+    in.open(inputFile.c_str(), std::ifstream::in);
     if (!in.is_open())
     {
         std::cerr << "Invalid file" << std::endl;
         return (1);
     }
-    std::ofstream   out(outputFile, std::ofstream::out);
+    std::ofstream   out;
+    out.open(outputFile.c_str(), std::ofstream::out);
     if (!out.is_open())
     {
         std::cerr << "Error in opening the file" << std::endl;
         return (in.close(), 1);
     }
     bufr = fileTobuffr(in);
+    in.close();
     if (!s1.empty())
         writeTofile(out, bufr,s1, s2);
     else
         out << bufr;
     out.close();
-    in.close();
 }
