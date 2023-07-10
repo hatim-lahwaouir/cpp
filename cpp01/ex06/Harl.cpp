@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 05:36:22 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/06/30 13:52:15 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/07/09 22:59:01 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void    Harl::info(void)
 
 void    Harl::warning()
 {
-    std::cout << "I think I deserve to have some extra bacon for free. I’ve been coming for years whereas you started working here since last month."  << std::endl;
+    std::cout << "I think I deserve to have some extra bacon for free."<< std::endl << "I’ve been coming for years whereas you started working here since last month."  << std::endl;
 }
 
 void    Harl::error()
@@ -60,7 +60,7 @@ void    Harl::complain(std::string comment)
     switch (i)
     {
     case 4:
-        std::cout << " Probably complaining about insignificant problems ]" <<std::endl;
+        std::cout << "[ Probably complaining about insignificant problems ]" <<std::endl;
         break;
     default:
         while (i < 4)

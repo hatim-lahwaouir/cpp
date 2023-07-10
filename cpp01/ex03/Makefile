@@ -14,7 +14,7 @@ $(NAME) : $(OBJS)
 	$(CC) $(FLAGS) $(STD) $(OBJS) -o $(NAME)
 
 %.o: %.cpp $(INCLUDE)
-	$(CC) -Wall -Wextra -Werror -std=c++98 -c $< -o $@
+	$(CC) $(FLAGS) $(STD) -c $< -o $@
 
 clean :
 	rm -rf $(OBJS)

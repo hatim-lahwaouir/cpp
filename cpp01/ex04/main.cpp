@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 02:35:15 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/06/30 14:02:21 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/07/09 23:02:05 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void    writeTofile(std::ofstream &out, std::string &inputBuffr, std::string &s1
                 out << inputBuffr[i++];
             return;
         }
-        while (i < pos && i < inputBuffr.length())
+        while (i < pos)
             out << inputBuffr[i++];
         if (pos < inputBuffr.length())
             out << s2;
@@ -55,16 +55,16 @@ int main(int ac, char **av)
     std::string     outputFile(inputFile + ".replace");
     std::string     s1(av[2]);
     std::string     s2(av[3]);
-    std::string bufr;
-
+    std::string     bufr;
+    std::ofstream   out;
     std::ifstream   in;
+
     in.open(inputFile.c_str(), std::ifstream::in);
     if (!in.is_open())
     {
         std::cerr << "Invalid file" << std::endl;
         return (1);
     }
-    std::ofstream   out;
     out.open(outputFile.c_str(), std::ofstream::out);
     if (!out.is_open())
     {

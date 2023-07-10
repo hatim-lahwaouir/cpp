@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 12:23:01 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/06/25 19:21:54 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/07/09 22:22:24 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int main()
 {
     Zombie *zombies = zombieHorde(10, "zombie");
     
-    if (zombies == nullptr)
+    if (zombies == NULL)
         return (1);
     for (int i = 0; i < 10; i++)
         zombies[i].announce();

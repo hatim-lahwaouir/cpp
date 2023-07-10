@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 01:34:38 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/06/22 04:55:44 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/06/25 19:55:19 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int main()
         jim.attack();
         club.setType("some other type of club");
         jim.attack();
-        
     }
-return 0;
+    return 0;
 }
