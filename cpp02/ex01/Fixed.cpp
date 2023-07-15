@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 02:03:50 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/07/15 07:49:41 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/07/15 20:17:30 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ Fixed::Fixed(Fixed const &obj)
 {
     std::cout << "Copy constructor called" << std::endl;
     this->_bufr = obj.getRawBits();
-}   
+}
 
 
 Fixed::Fixed(const int nbr)
@@ -37,11 +37,14 @@ Fixed::Fixed(const int nbr)
 
 Fixed::Fixed(const float nbr)
 {
+    std::cout << "Float constructor called" << std::endl;    
+
     int     n;
     float   tmp;
     float   table[8] = {0.5, 0.25, 0.125, 0.0625, 0.03125 ,0.015625, 0.0078125, 0.00390625};
     int     i;
 
+    
     n = (int)nbr;
 
     this->_bufr = 0;
@@ -72,7 +75,6 @@ Fixed::~Fixed()
 
 int Fixed::getRawBits() const
 {
-    std::cout << "getRawBits member function called" << std::endl;
     return (this->_bufr);
 }
 
@@ -107,14 +109,16 @@ int   Fixed::toInt(void) const
 // ******************************** operator overloading ******************************** 
 // **********************************************************************************
 
-void    Fixed::operator=(Fixed &obj)
+Fixed &Fixed::operator=(const Fixed &obj)
 {
     std::cout << "Copy assignment operator called" << std::endl;
     this->_bufr = obj.getRawBits();
+    return (*this);
 }
 
-float Fixed::operator<<(void)
+
+std::ostream &operator<<(std::ostream &stream, const Fixed obj)
 {
-    std::cout << "Copy assignment operator called" << std::endl;
-    return (this->toFloat());
+    stream << obj.toFloat();
+    return (stream);
 }
