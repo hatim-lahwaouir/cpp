@@ -6,13 +6,15 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 02:03:50 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/07/15 05:30:12 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/07/15 06:36:01 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
 const int Fixed::sizeFractionalBits = 8;
+// ******************************** constructors ******************************** 
+// ******************************** ******************************** ************
 
 Fixed::Fixed()
 {
@@ -38,16 +40,35 @@ Fixed::Fixed(const float nbr)
     int     n;
     float   tmp;
     float   table[8] = {0.5, 0.25, 0.125, 0.0625, 0.03125 ,0.015625, 0.0078125, 0.00390625};
+    int     i;
 
     n = (int)nbr;
-    tmp = nbr - (float)n;
+
+    this->_bufr = 0;
     this->_bufr = (n << 8);
+
+    tmp = nbr - (float)n;
+    i = 0;
+    while (i < 8)
+    {
+        if (table[i] < tmp)
+        {
+            this->_bufr += (1  << (Fixed::sizeFractionalBits - i - 1));
+            tmp -= table[i];
+        }
+        i += 1;
+    }
 }
 
+// ******************************** destructor ******************************** 
+// ******************************** ******************************** ************
 Fixed::~Fixed()
 {
     std::cout << "Destructor called" << std::endl;
 }
+
+// ******************************** member functions ******************************** 
+// **********************************************************************************
 
 int Fixed::getRawBits() const
 {
@@ -66,3 +87,25 @@ void    Fixed::operator=(Fixed &obj)
     this->_bufr = obj.getRawBits();
 }
 
+float   Fixed::toFloat(void) const
+{
+    float   ret;
+    int     i;
+
+    float   table[8] = {0.5, 0.25, 0.125, 0.0625, 0.03125 ,0.015625, 0.0078125, 0.00390625};
+    i = 0;
+    ret = (this->_bufr >> 8);
+    
+    while (i < 8)
+    {
+        if ((this->_bufr >> (Fixed::sizeFractionalBits - 1 - i)) & 1)
+            ret += table[i];
+        i += 1;    
+    }
+    
+}
+
+int   Fixed::toInt(void) const
+{
+   return (this->_bufr >> 8);
+}
