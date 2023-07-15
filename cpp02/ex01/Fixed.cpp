@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 02:03:50 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/07/15 06:36:01 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/07/15 07:49:41 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,6 @@ void    Fixed::setRawbits(int const raw)
     this->_bufr  = raw;
 }
 
-void    Fixed::operator=(Fixed &obj)
-{
-     std::cout << "Copy assignment operator called" << std::endl;
-    this->_bufr = obj.getRawBits();
-}
 
 float   Fixed::toFloat(void) const
 {
@@ -102,10 +97,24 @@ float   Fixed::toFloat(void) const
             ret += table[i];
         i += 1;    
     }
-    
+    return (ret);
 }
 
 int   Fixed::toInt(void) const
 {
    return (this->_bufr >> 8);
+}
+// ******************************** operator overloading ******************************** 
+// **********************************************************************************
+
+void    Fixed::operator=(Fixed &obj)
+{
+    std::cout << "Copy assignment operator called" << std::endl;
+    this->_bufr = obj.getRawBits();
+}
+
+float Fixed::operator<<(void)
+{
+    std::cout << "Copy assignment operator called" << std::endl;
+    return (this->toFloat());
 }
