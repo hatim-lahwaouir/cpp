@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 21:38:25 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/07/15 23:47:26 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/07/17 00:56:36 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,50 @@ Fixed   Fixed::operator -(const Fixed &obj)
 
 Fixed   Fixed::operator *(const Fixed &obj)
 {
+    int f = ((float)(this->_bufr * obj._bufr) / 256);    
+    
     Fixed ret;
-
-    ret._bufr = obj.getRawBits() * this->getRawBits(); 
+    ret.setRawbits(f);
     return (ret);
+}
+
+
+Fixed   Fixed::operator / (const Fixed &obj)
+{
+    int f = (((float)this->_bufr / obj._bufr ) * 256);    
+    
+    Fixed ret;
+    ret.setRawbits(f);
+    return (ret);
+}
+
+
+Fixed   Fixed::operator++(int)
+{
+    Fixed   tmp;
+
+    tmp = *this;
+    this->_bufr += 1;
+    return (tmp);
+}
+
+Fixed   Fixed::operator++(void)
+{
+    this->_bufr += 1;
+    return (*this);
+}
+
+Fixed   Fixed::operator--(int)
+{
+    Fixed   tmp;
+
+    tmp = *this;
+    this->_bufr -= 1;
+    return (tmp);
+}
+
+Fixed   Fixed::operator--(void)
+{
+    this->_bufr -= 1;
+    return (*this);
 }

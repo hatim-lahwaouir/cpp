@@ -1,5 +1,5 @@
 NAME = a.out
-SRCS = Fixed.cpp  main.cpp operatorOverload.cpp
+SRCS = Fixed.cpp  main.cpp operatorOverload.cpp s_MemberFunction.cpp
 OBJS = ${SRCS:%.cpp=%.o}
 CC = c++
 FLAGS = -Wall -Wextra -Werror

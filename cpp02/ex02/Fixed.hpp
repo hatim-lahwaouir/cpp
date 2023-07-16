@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 02:03:58 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/07/15 23:18:48 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/07/17 00:53:57 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ class Fixed
     static const int sizeFractionalBits;
 
     public:
+    static  Fixed &min(Fixed&, Fixed&);
+    static  const Fixed &min(const Fixed&, const Fixed&);
+    static  Fixed &max(Fixed&, Fixed&);
+    static  const Fixed &max(const Fixed&, const Fixed&);
         Fixed();
         Fixed(const Fixed &obj);
         Fixed(const int);
@@ -46,6 +50,12 @@ class Fixed
                 Fixed   operator -(const Fixed &obj);
                 Fixed   operator *(const Fixed &obj);
                 Fixed   operator /(const Fixed &obj);
+            // increment decrement operators
+                Fixed   operator ++(void);
+                Fixed   operator ++(int);
+                Fixed   operator --(void);
+                Fixed   operator --(int);
+
 };
 
 std::ostream &operator<<(std::ostream &stream, const Fixed &obj);
