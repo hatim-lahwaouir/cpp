@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 02:03:50 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/07/15 23:26:30 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/07/16 01:09:28 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,21 @@ Fixed::Fixed(const int nbr)
 
 Fixed::Fixed(const float nbr)
 {
-    int     n;
     float   tmp;
     float   table[8] = {0.5, 0.25, 0.125, 0.0625, 0.03125 ,0.015625, 0.0078125, 0.00390625};
     int     i;
 
-    n = (int)nbr;
 
     this->_bufr = 0;
-    this->_bufr = (n << 8);
+    this->_bufr = ((int)nbr << 8);
 
-    tmp = nbr - (float)n;
+    tmp = nbr - (int)nbr;
+    
+    if ((int)nbr == 0 && nbr < 0)
+    {
+        this->_bufr = -1;
+        this->_bufr = this->_bufr << 8;
+    }
     
     if (tmp < 0)
         tmp = tmp + 1;
