@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 02:03:50 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/07/15 23:36:04 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/07/22 11:53:04 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,11 +103,11 @@ int   Fixed::toInt(void) const
 // ******************************** operator overloading ******************************** 
 // **********************************************************************************
 
-void    Fixed::operator=(const Fixed &obj)
+Fixed    &Fixed::operator=(const Fixed &obj)
 {
     std::cout << "Copy assignment operator called" << std::endl;
     this->_bufr = obj.getRawBits();
-    
+    return (*this);
 }
 
 

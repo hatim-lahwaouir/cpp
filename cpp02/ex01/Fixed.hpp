@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 02:03:58 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/07/15 22:38:27 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/07/22 11:53:28 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,14 @@ class Fixed
     public:
         Fixed();
         Fixed(const Fixed &obj);
+        Fixed   &operator = (const Fixed &obj);
+        ~Fixed();
+        
         Fixed(const int);
         Fixed(const float);
         
-        ~Fixed();
         float   toFloat(void) const;
         int     toInt(void) const;
-        void    operator = (const Fixed &obj);
         int     getRawBits(void) const;
         void    setRawbits(int const raw);
 };

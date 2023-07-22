@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 02:03:58 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/07/17 00:53:57 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/07/22 12:05:08 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,18 @@ class Fixed
     static  const Fixed &max(const Fixed&, const Fixed&);
         Fixed();
         Fixed(const Fixed &obj);
+        Fixed   &operator = (const Fixed &obj);
+        ~Fixed();
+        
         Fixed(const int);
         Fixed(const float);
         
-        ~Fixed();
         float   toFloat(void) const;
         int     toInt(void) const;
         int     getRawBits(void) const;
         void    setRawbits(int const raw);
         // operator oveloading
             // comparision operators
-                void    operator = (const Fixed &obj);
                 bool    operator > (const Fixed &obj) const;
                 bool    operator >= (const Fixed &obj) const;;
                 bool    operator < (const Fixed &obj) const;
@@ -51,9 +52,9 @@ class Fixed
                 Fixed   operator *(const Fixed &obj);
                 Fixed   operator /(const Fixed &obj);
             // increment decrement operators
-                Fixed   operator ++(void);
+                Fixed   &operator ++(void);
                 Fixed   operator ++(int);
-                Fixed   operator --(void);
+                Fixed   &operator --(void);
                 Fixed   operator --(int);
 
 };
