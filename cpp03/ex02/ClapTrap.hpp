@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 13:50:57 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/07/26 15:01:03 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/07/26 14:10:41 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class   ClapTrap
     public:
         // constructors
         ClapTrap();
-        ClapTrap(std::string);
+        ClapTrap(const std::string&);
         ClapTrap(const std::string&, unsigned int, unsigned int,unsigned int);
         ClapTrap(const ClapTrap &obj);
         ~ClapTrap();
@@ -38,7 +38,6 @@ class   ClapTrap
                 unsigned int        getAttackDamage(void) const;
                 const std::string&  getName(void) const;
                 unsigned int        getEnergyPoints(void) const;
-                unsigned int        getHitPoints(void) const;
             // seters
                 void    setAttackDamage(long long);
                 void    setEnergyPoints(unsigned int);

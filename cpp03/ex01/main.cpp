@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 15:53:40 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/07/26 13:21:25 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/07/26 15:03:23 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int main()
     
 
     p1.myStatus();
+    
+    p1.guardGate();
+    p2.guardGate();
     p2.myStatus();
 }
-l

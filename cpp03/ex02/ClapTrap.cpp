@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 14:09:16 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/07/26 15:01:57 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/07/26 14:10:50 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // **********************************************
 // *************    Constructors ****************
 // **********************************************
-ClapTrap::ClapTrap(std::string name)
+ClapTrap::ClapTrap(const std::string &name)
 {
     _name = name;
     _hitPoints = 10;
@@ -139,11 +139,6 @@ unsigned int    ClapTrap::getAttackDamage() const
 unsigned int ClapTrap::getEnergyPoints(void) const
 {
     return (this->_EnergyPoints);
-}
-
-unsigned int ClapTrap::getHitPoints(void) const
-{
-    return (_hitPoints);
 }
 
 const std::string     &ClapTrap::getName() const
