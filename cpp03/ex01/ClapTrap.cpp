@@ -6,12 +6,15 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 14:09:16 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/07/25 10:03:30 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/07/26 13:20:54 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
+// **********************************************
+// *************    Constructors ****************
+// **********************************************
 ClapTrap::ClapTrap(std::string name)
 {
     _name = name;
@@ -27,7 +30,7 @@ ClapTrap::ClapTrap()
     _hitPoints = 10;
     _EnergyPoints = 10;
     _AttackDamage = 0;
-    std::cout << "Default constructor1" <<std::endl;
+    std::cout << "Default constructor" <<std::endl;
 }
 
 ClapTrap& ClapTrap::operator =(const ClapTrap &obj)
@@ -51,16 +54,25 @@ ClapTrap::ClapTrap(const ClapTrap &obj)
 
 ClapTrap::ClapTrap(std::string &name, unsigned int hitPoint, unsigned int energyPoint, unsigned int attackDamage)
 {
+    std::cout << "ClapTrap parameterized constructor" << std::endl;
     _name = name;
     _hitPoints = hitPoint;
     _EnergyPoints = energyPoint;
     _AttackDamage = attackDamage;
 }
 
+// **********************************************
+// *************    Destructors *****************
+// **********************************************
+
 ClapTrap::~ClapTrap()
 {
     std::cout << "Destructor called " << std::endl;
 }
+
+// **********************************************
+// *************    Actions *********************
+// **********************************************
 
 void    ClapTrap::attack(const std::string &target)
 {
@@ -80,23 +92,44 @@ void    ClapTrap::attack(const std::string &target)
 
 void    ClapTrap::takeDamage(unsigned int amount)
 {
-    std::cout << "ClapTrap " << this->_name << " takes " << amount << " of damage" << std::endl;  
-    if (_hitPoints > 0)
-        _hitPoints -= amount;
-    else
+    if (_hitPoints == 0)
+    {
         std::cout << "ClapTrap " << this->_name << " is dead" << std::endl;
+        return;
+    }
+    if (_EnergyPoints == 0)
+    {
+        std::cout << "ClapTrap " << this->_name << " can't attack" << std::endl;
+        return;
+    }
+    if (_hitPoints > amount)
+    {
+        std::cout << _hitPoints - amount << std::endl;
+        std::cout << "ClapTrap " << this->_name << " takes " << amount << " of damage" << std::endl;  
+        _hitPoints -= amount;
+    }
+    else
+    {
+        std::cout << "ClapTrap " << this->_name << " is dead" << std::endl;
+        _hitPoints = 0;
+    }
 }
 
 
 void    ClapTrap::beRepaired(unsigned int amount)
 {
-    _hitPoints += amount;
-    _EnergyPoints += amount;
 
-    std::cout << "I gained (" << amount << ") hitPoints and (" << amount << ") EnergyPoints" << std::endl;
+    if (_hitPoints != 0)
+    {
+        _EnergyPoints += amount;
+        _hitPoints += amount;
+        std::cout << this->getName() << " gained (" << amount << ") hitPoints and (" << amount << ") EnergyPoints" << std::endl;
+    }
 }
 
-// geters
+// **********************************************
+// *************    Geters **********************
+// **********************************************
 
 unsigned int    ClapTrap::getAttackDamage() const
 {
@@ -108,12 +141,14 @@ unsigned int ClapTrap::getEnergyPoints(void) const
     return (this->_EnergyPoints);
 }
 
-std::string     ClapTrap::getName() const
+const std::string     &ClapTrap::getName() const
 {
     return (this->_name);
 }
 
-// seters
+// **********************************************
+// *************    Seters **********************
+// **********************************************
 
 void    ClapTrap::setEnergyPoints(unsigned int energyPoints)
 {
@@ -126,4 +161,16 @@ void    ClapTrap::setAttackDamage(long long nbr)
         std::cout << "Invalid attack damage" << std::endl;
     else
         this->_AttackDamage = nbr;
+}
+
+// **********************************************
+// *************    Status **********************
+// **********************************************
+
+void    ClapTrap::myStatus(void) const
+{
+    if (_hitPoints != 0)
+        std::cout << _name <<" " << _hitPoints << " Hit points, "<< _EnergyPoints  << " Energy Points and " << _AttackDamage << " Attack damage" << std::endl;
+    else
+        std::cout << _name << " is dead" << std::endl;
 }

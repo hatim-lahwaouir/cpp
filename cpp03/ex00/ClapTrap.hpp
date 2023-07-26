@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 13:50:57 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/07/24 15:55:45 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/07/26 13:24:42 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #define  CLAPTRAP_HPP
 
 # include "iostream"
-
+# include "limits.h"
 class   ClapTrap
 {
     std::string _name;
