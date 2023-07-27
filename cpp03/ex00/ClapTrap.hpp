@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 13:50:57 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/07/26 13:24:42 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/07/27 11:15:06 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ class   ClapTrap
     public:
         // constructors
         ClapTrap();
-        ClapTrap(std::string);
         ClapTrap(const ClapTrap &obj);
-        ~ClapTrap();
         ClapTrap & operator = (const ClapTrap &);
+        ~ClapTrap();
+        ClapTrap(std::string);
         // methods 
         void attack(const std::string& target);
         void takeDamage(unsigned int amount);

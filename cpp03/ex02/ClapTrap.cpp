@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 14:09:16 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/07/26 14:10:50 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/07/27 12:15:54 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ ClapTrap::ClapTrap(const std::string &name)
     _hitPoints = 10;
     _EnergyPoints = 10;
     _AttackDamage = 0;
-    std::cout << "Parameterized constructor" << std::endl;
+    std::cout << "ClapTrap Parameterized constructor" << std::endl;
 }
 
 ClapTrap::ClapTrap()
@@ -30,11 +30,12 @@ ClapTrap::ClapTrap()
     _hitPoints = 10;
     _EnergyPoints = 10;
     _AttackDamage = 0;
-    std::cout << "Default constructor" <<std::endl;
+    std::cout << "ClapTrap  Default constructor" <<std::endl;
 }
 
 ClapTrap& ClapTrap::operator =(const ClapTrap &obj)
 {
+    std::cout << "ClapTrap Copy assignment operator" << std::endl;
     if (this != &obj)
     {
         _name = obj._name;
@@ -43,13 +44,12 @@ ClapTrap& ClapTrap::operator =(const ClapTrap &obj)
         _AttackDamage = obj._AttackDamage;
     }
     return (*this);
-    std::cout << "Copy constructor" <<std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &obj)
 {
     *this = obj;
-    std::cout << "Copy assignment operator" << std::endl;
+    std::cout << "ClapTrap  Copy constructor" <<std::endl;
 }
 
 ClapTrap::ClapTrap(const std::string &name, unsigned int hitPoint, unsigned int energyPoint, unsigned int attackDamage)
@@ -67,7 +67,7 @@ ClapTrap::ClapTrap(const std::string &name, unsigned int hitPoint, unsigned int 
 
 ClapTrap::~ClapTrap()
 {
-    std::cout << "Destructor called " << std::endl;
+    std::cout << "ClapTrap Destructor called " << std::endl;
 }
 
 // **********************************************
@@ -78,7 +78,7 @@ void    ClapTrap::attack(const std::string &target)
 {
     if (target == this->_name)
     {
-        std::cout << this->_name << " can't attack it self" << std::endl;
+        std::cout <<"ClapTrap "<< this->_name << " can't attack it self" << std::endl;
         return ;
     }
     if (this->_EnergyPoints)
@@ -104,7 +104,6 @@ void    ClapTrap::takeDamage(unsigned int amount)
     }
     if (_hitPoints > amount)
     {
-        std::cout << _hitPoints - amount << std::endl;
         std::cout << "ClapTrap " << this->_name << " takes " << amount << " of damage" << std::endl;  
         _hitPoints -= amount;
     }
@@ -123,7 +122,7 @@ void    ClapTrap::beRepaired(unsigned int amount)
     {
         _EnergyPoints += amount;
         _hitPoints += amount;
-        std::cout << this->getName() << " gained (" << amount << ") hitPoints and (" << amount << ") EnergyPoints" << std::endl;
+        std::cout <<"ClapTrap "<< this->getName() << " gained (" << amount << ") hitPoints and (" << amount << ") EnergyPoints" << std::endl;
     }
 }
 
@@ -157,10 +156,18 @@ void    ClapTrap::setEnergyPoints(unsigned int energyPoints)
 
 void    ClapTrap::setAttackDamage(long long nbr)
 {
+    if (_hitPoints == 0)
+    {
+        std::cout << "ClapTrap " << _name << " is dead" << std::endl; 
+        return;
+    }
     if (nbr < 0)
-        std::cout << "Invalid attack damage" << std::endl;
+        std::cout << "ClapTrap Invalid attack damage" << std::endl;
     else
+    {
+        std::cout << "ClapTrap "<< _name << " set Attack damage" << std::endl;
         this->_AttackDamage = nbr;
+    }
 }
 
 // **********************************************
@@ -170,7 +177,7 @@ void    ClapTrap::setAttackDamage(long long nbr)
 void    ClapTrap::myStatus(void) const
 {
     if (_hitPoints != 0)
-        std::cout << _name <<" " << _hitPoints << " Hit points, "<< _EnergyPoints  << " Energy Points and " << _AttackDamage << " Attack damage" << std::endl;
+        std::cout << "ClapTrap "<< _name <<" " << _hitPoints << " Hit points, "<< _EnergyPoints  << " Energy Points and " << _AttackDamage << " Attack damage" << std::endl;
     else
-        std::cout << _name << " is dead" << std::endl;
+        std::cout << "ClapTrap " << _name << " is dead" << std::endl;
 }

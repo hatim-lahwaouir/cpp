@@ -1,5 +1,5 @@
 NAME = a.out
-SRCS = ClapTrap.cpp main.cpp  çç
+SRCS = ClapTrap.cpp main.cpp  FragTrap.cpp
 OBJS = ${SRCS:%.cpp=%.o}
 CC = c++
 FLAGS = -Wall -Wextra -Werror
