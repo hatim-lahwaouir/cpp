@@ -6,15 +6,11 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 15:37:42 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/07/31 16:31:35 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/07/31 16:34:38 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
-#include "Dog.hpp"
-#include "Cat.hpp"
-#include "WrongAnimal.hpp"
-#include "WrongCat.hpp"
+#include "ex00.hpp"
 
 int main()
 {

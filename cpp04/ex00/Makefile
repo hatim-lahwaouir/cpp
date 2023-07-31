@@ -4,7 +4,7 @@ OBJS = ${SRCS:%.cpp=%.o}
 CC = c++
 FLAGS = -Wall -Wextra -Werror
 STD = -std=c++98
-INCLUDE = Animal.hpp Cat.hpp Dog.hpp WrongAnimal.hpp WrongCat.hpp
+INCLUDE = Animal.hpp Cat.hpp Dog.hpp WrongAnimal.hpp WrongCat.hpp ex00.hpp
 
 all : $(NAME)
 
