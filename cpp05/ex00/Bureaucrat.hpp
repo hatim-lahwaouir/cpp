@@ -5,37 +5,45 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/09 09:04:25 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/08/09 10:49:19 by hlahwaou         ###   ########.fr       */
+/*   Created: 2023/08/18 11:10:30 by hlahwaou          #+#    #+#             */
+/*   Updated: 2023/08/18 18:22:44 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma BUREAUCRAT
+#ifndef BUREAUCRAT_HPP
+#define BUREAUCRAT_HPP
 #include "iostream"
+#include "ExceptionClasses.hpp"
 
-class GradeTooHighException : public std::exception
+// main class
+class Bureaucrat
 {
+    // exceptions
+    static GradeTooHighException toheigh;
+    static GradeTooLowException  toLow;
+    static DataTypeError         DataTypeError;
+    private:
+        const std::string   _name;
+        int                 _grade;
+        // check the grade
+            int  validGrad(const std::string &grade);
     public:
-        const char *what();
+        // constructors
+            Bureaucrat();
+            Bureaucrat(const Bureaucrat &);
+            Bureaucrat(const std::string &name, const std::string &grade);
+        // operator overloading 
+            Bureaucrat &operator=(const Bureaucrat &);
+            Bureaucrat operator++(int);
+            Bureaucrat operator--(int);
+        // geters 
+            const std::string &getName() const;
+            int   getGrade() const;
+        // action
+            void    decrement();
+            void    increment();
+        // destructors
+            ~Bureaucrat();
 };
-
-
-class GradeTooLowException : public std::exception
-{
-    public:
-        const char *what();
-};
-
-
-class Bureaucrat : public std::exception
-{
-    const std::string   _name;
-    int                 _grade;
-    // constructors
-    public:
-    static const GradeTooHighException  GradeTooHighException;
-    static const GradeTooLowException   GradeTooLowException;
-        Bureaucrat(std::string, int);
-    const std::string &getName() const;
-    int   getGrade() const;
-};
+std::ostream &operator<<(std::ostream &out, const Bureaucrat &obj);
+#endif
