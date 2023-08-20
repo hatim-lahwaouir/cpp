@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:39:30 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/08/19 19:54:20 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/08/20 04:12:10 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 class GTH;
 class GTL;
 class DataTypeError;
+class Bureaucrat;
 
 class Form
 {
@@ -43,6 +44,8 @@ class Form
         const std::string   &getName() const;
         int                 getGradeRToExecute() const;
         int                 getGradeRToSigned() const;
+    // actions
+        void    beSigned(const Bureaucrat&);
     // destructor
         ~Form();
 };

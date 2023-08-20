@@ -6,12 +6,13 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:50:38 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/08/19 19:55:26 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/08/20 04:31:03 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 #include "ExceptionClasses.hpp"
+#include "Bureaucrat.hpp"
 
 GTH Form::GradeTooHighException;
 GTL Form::GradeTooLowException;
@@ -52,7 +53,7 @@ Form &Form::operator=(const Form &obj)
 
 std::ostream &operator<<(std::ostream &cout, const Form &obj)
 {
-    cout << "The form '"<< obj.getName() << "', to sign it you must be at " << obj.getGradeRToSigned() << " grade and to excute it you must be at " << obj.getGradeRToExecute() << " grade, ";
+    cout << "The form '"<< obj.getName() << "', to sign it you must be at " << obj.getGradeRToSigned() << " grade or higher, and to excute it you must be at " << obj.getGradeRToExecute() << " grade or higher, ";
     cout << "And this form is ";
     if (obj.getSigned())
         cout << "signed";
@@ -97,6 +98,24 @@ int Form::getGradeRToSigned() const
 {
     return (_gradeRToSigned);
 }
+
+// **********************************************
+// **********************************************
+// ***************   Actions     ****************
+// **********************************************
+// **********************************************
+
+void    Form::beSigned(const Bureaucrat &bur)
+{
+    if (bur.getGrade() <= this->getGradeRToSigned())
+    {
+        _signed = true;
+        bur.signForm(*this);
+        return;
+    }
+    throw Form::GradeTooLowException;
+}
+
 
 // **********************************************
 // **********************************************

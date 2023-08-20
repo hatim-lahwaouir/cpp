@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 11:10:30 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/08/18 20:47:27 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/08/20 04:24:22 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 #include "iostream"
 #include "ExceptionClasses.hpp"
 
-// main class
+class Form;
+
 class Bureaucrat
 {
     // exceptions
@@ -42,6 +43,7 @@ class Bureaucrat
         // action
             void    decrement();
             void    increment();
+            void    signForm(const Form &) const;
         // destructors
             ~Bureaucrat();
 };

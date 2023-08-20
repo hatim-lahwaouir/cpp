@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 16:18:24 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/08/19 19:54:41 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/08/20 04:27:41 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ int main()
 {
     try
     {
-        Form fr1("SII", "150", "1");
+        Form fr1("SII", "150", "2");
+        std::cout << fr1 << std::endl;
+        Bureaucrat br1("br1", "3");
+        fr1.beSigned(br1);
         std::cout << fr1 << std::endl;
     }
     catch(const std::exception& e)

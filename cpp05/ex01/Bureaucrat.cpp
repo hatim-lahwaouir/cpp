@@ -6,11 +6,12 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 14:28:44 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/08/19 19:37:13 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/08/20 04:27:53 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 GTH Bureaucrat::GradeTooHighException;
 GTL Bureaucrat::GradeTooLowException;
@@ -153,4 +154,12 @@ void    Bureaucrat::increment()
     this->_grade--;
     if (_grade < 1)
         throw Bureaucrat::GradeTooLowException;
+}
+
+void Bureaucrat::signForm(const Form &frm) const
+{
+    if (frm.getGradeRToSigned() >= this->getGrade())
+        std::cout << this->getName() << " signed " << frm.getName() << std::endl;
+    else
+        std::cout << this->getName() << " couldn't signed " << frm.getName() << " beacause his grade is too low "<< std::endl;
 }
