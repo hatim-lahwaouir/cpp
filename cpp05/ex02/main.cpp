@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 16:18:24 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/08/20 22:46:23 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/08/21 14:39:08 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int main()
         ptr[2] = new ShrubberyCreationForm("Mehdi");
         i = 0;
         while (i < 3)
-            ptr[i++]->execute(bre);        
+            ptr[i++]->execute(bre);
     }
     catch(const std::exception& e)
     {
@@ -41,6 +41,5 @@ int main()
         if (ptr[i])
             delete ptr[i];
         i++;       
-    }
-    
+    }   
 }

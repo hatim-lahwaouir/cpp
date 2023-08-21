@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 14:28:44 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/08/20 22:45:13 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/08/21 14:37:42 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,9 +159,9 @@ void    Bureaucrat::increment()
 void Bureaucrat::signForm(const AForm &frm) const
 {
     if (frm.getGradeRToSigned() >= this->getGrade())
-        std::cout << *this  << " signed " << frm.getName() << std::endl;
+        std::cout << *this  << " signed " << frm << std::endl;
     else
-        std::cout << *this << " couldn't signed " << frm.getName() << " beacause his grade is too low "<< std::endl;
+        std::cout << *this << " couldn't signed " << frm << " beacause his grade is too low "<< std::endl;
 }
 
 
@@ -170,5 +170,5 @@ void    Bureaucrat::executeForm(AForm const &form) const
     if (this->getGrade() <= form.getGradeRToExecute())
         std::cout << *this << " excuted " << form << std::endl;
     else
-        std::cout << *this << "can't excute this form" << std::endl;
+        std::cout << *this << "can't excute " << form << std::endl;
 }
