@@ -6,14 +6,14 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 14:28:44 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/08/18 18:24:41 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/08/21 14:29:59 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
-GradeTooHighException Bureaucrat::toheigh;
-GradeTooLowException Bureaucrat::toLow;
+GTH Bureaucrat::GradeTooHighException;
+GTL Bureaucrat::GradeTooLowException;
 DataTypeError Bureaucrat::DataTypeError;
 // **********************************************
 // **********************************************
@@ -33,9 +33,9 @@ Bureaucrat::Bureaucrat(const std::string &name, const std::string &grade) : _nam
     if (_grade == -1)
         throw Bureaucrat::DataTypeError;
     if (_grade < 1)
-        throw Bureaucrat::toheigh;
+        throw Bureaucrat::GradeTooHighException;
     if (_grade > 150)
-        throw Bureaucrat::toLow;
+        throw Bureaucrat::GradeTooLowException;
 }
 
 
@@ -75,7 +75,7 @@ int Bureaucrat::validGrad(const std::string & grade)
 
 // **********************************************
 // **********************************************
-// ******     seter                    **********
+// ***********         Getrs           **********
 // **********************************************
 // **********************************************
 int Bureaucrat::getGrade() const
@@ -144,12 +144,12 @@ void    Bureaucrat::decrement()
 {
     this->_grade++;
     if (_grade > 150)
-        throw Bureaucrat::toheigh;
+        throw Bureaucrat::GradeTooLowException;
 }
 
 void    Bureaucrat::increment()
 {
     this->_grade--;
     if (_grade < 1)
-        throw Bureaucrat::toLow;
+        throw Bureaucrat::GradeTooHighException;
 }

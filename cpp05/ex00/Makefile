@@ -1,4 +1,4 @@
-NAME = ex01
+NAME = ex00
 SRCS = Bureaucrat.cpp ExceptionClasses.cpp main.cpp
 OBJS = ${SRCS:%.cpp=%.o}
 CC = c++

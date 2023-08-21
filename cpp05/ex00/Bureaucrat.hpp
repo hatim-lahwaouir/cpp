@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 11:10:30 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/08/18 18:22:44 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/08/18 20:44:44 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 class Bureaucrat
 {
     // exceptions
-    static GradeTooHighException toheigh;
-    static GradeTooLowException  toLow;
+    static GTH GradeTooHighException;
+    static GTL GradeTooLowException;
     static DataTypeError         DataTypeError;
     private:
         const std::string   _name;

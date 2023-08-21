@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 11:21:58 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/08/18 16:34:19 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/08/18 20:43:53 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@
 // **********************************************
 // **********************************************
 
-const char * GradeTooHighException::what() const throw()
+const char * GTH::what() const throw()
 {
     return ("A grade is to high");
 }
 
-const char * GradeTooLowException::what() const throw()
+const char * GTL::what() const throw()
 {
     return ("A grade is to low");
 }

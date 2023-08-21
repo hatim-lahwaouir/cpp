@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 11:21:08 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/08/18 16:27:24 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/08/18 20:43:40 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ class DataTypeError : public ProblemIdentifier
         const char *what() const throw();
 };
 
-class GradeTooHighException : public ProblemIdentifier
+class GTH : public ProblemIdentifier
 {
     public:
         const char *what() const throw();
 };
 
-class GradeTooLowException : public ProblemIdentifier
+class GTL : public ProblemIdentifier
 {
     public:
         const char *what() const throw();
