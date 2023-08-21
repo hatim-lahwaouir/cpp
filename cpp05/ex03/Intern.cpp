@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 00:05:44 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/08/21 02:06:46 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/08/21 02:12:01 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,13 @@
 # include "PresidentialPardonForm.hpp" 
 # include "RobotomyRequestForm.hpp" 
 # include "ShrubberyCreationForm.hpp"
+
+
+// **********************************************
+// **********************************************
+// *************     Action      ****************
+// **********************************************
+// **********************************************
 
 AForm * Intern::makeForm(const std::string &FormName, const std::string & target) const
 {
@@ -44,6 +51,3 @@ AForm * Intern::makeForm(const std::string &FormName, const std::string & target
     return (ret);
 }
 
-Intern::~Intern()
-{
-}
