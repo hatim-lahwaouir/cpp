@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 14:28:44 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/08/20 04:27:53 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/08/21 14:35:21 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,7 @@ void    Bureaucrat::increment()
 void Bureaucrat::signForm(const Form &frm) const
 {
     if (frm.getGradeRToSigned() >= this->getGrade())
-        std::cout << this->getName() << " signed " << frm.getName() << std::endl;
+        std::cout << *this << " signed " << frm << std::endl;
     else
-        std::cout << this->getName() << " couldn't signed " << frm.getName() << " beacause his grade is too low "<< std::endl;
+        std::cout << *this << " couldn't signed " << frm << " beacause his grade is too low "<< std::endl;
 }

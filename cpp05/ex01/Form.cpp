@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:50:38 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/08/20 04:31:03 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2023/08/20 14:40:53 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ void    Form::beSigned(const Bureaucrat &bur)
         bur.signForm(*this);
         return;
     }
+    bur.signForm(*this);
     throw Form::GradeTooLowException;
 }
 
