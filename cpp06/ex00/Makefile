@@ -1,7 +1,7 @@
 NAME = convert
 SRCS = ScalarConverte.cpp  parsing.cpp
 OBJS = ${SRCS:%.cpp=%.o}
-CC = c++  -fsanitize=address
+CC = c++  
 FLAGS = -Wall -Wextra -Werror
 STD = -std=c++98
 INCLUDE = ScalarConverte.hpp 
