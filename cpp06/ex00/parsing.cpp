@@ -1,8 +1,18 @@
 #include "ScalarConverte.hpp"
 
 
+// remove the f for float numbers
+
+void    ScalarConverte::removef(std::string &rep)
+{
+    size_t fIndex = rep.find("f");
+
+    if (fIndex != std::string::npos && fIndex > 0 && isdigit(rep[fIndex - 1]))
+        rep.erase(fIndex, 1);
+}
+
 // trim function
-std::string ft_trim(const std::string oldrep)
+std::string ScalarConverte::ft_trim(const std::string oldrep)
 {
     std::string newrep = oldrep;
     size_t startspaces = 0;
@@ -32,7 +42,7 @@ std::string ft_trim(const std::string oldrep)
 
 // checking on nbr
 
-bool    NbrGoodRep(const std::string &rep)
+bool    ScalarConverte::NbrGoodRep(const std::string &rep)
 {
     size_t i = 0;
 
@@ -62,5 +72,70 @@ bool    NbrGoodRep(const std::string &rep)
         ;
     
     // if we reach the end that the format is correct else no
-    return (!rep[i]);
+    if (!rep[i])
+    {
+        return (true);
+    }
+    if (rep[i] == 'f' && rep[i + 1] == '\0')
+        return (true);
+    
+
+    return (false);
+}
+
+// is pseuado rep
+
+bool    ScalarConverte::isPseudo(const std::string &rep)
+{
+
+    for (size_t i = 0; i < 6; i++)
+    {
+        if (ScalarConverte::pseudoElements[i] == rep)
+            return (true);
+    }
+    return (false);
+}
+
+bool ScalarConverte::isFloatPseudo(const std::string &rep)
+{
+
+    std::string arr[]  = {"-inff", "+inff", "nanf"};
+
+    for (size_t i = 0; i < 3; i++)
+    {
+        if (arr[i] == rep)
+            return (true);        
+    }
+    return (false);
+}
+
+
+void        ScalarConverte::handlingPseudo(std::string &rep)
+{
+    // if is a float rep
+    if (isFloatPseudo(rep))
+    {
+        float nbr = std::atof(rep.c_str());
+        if (rep == "nanf")
+            std::cout << "char :" << "impossible" <<"\n";
+        else
+            std::cout << "char :" << "Non displayable" <<"\n";
+    
+        std::cout << "int :" << static_cast<int>(nbr)<< "\n";
+        std::cout << "float :" << (nbr)<< "\n";
+        std::cout << "double :" <<  static_cast<double>(nbr)<<"\n";
+    }
+    // double representation
+    else
+    {
+        rep += "f";
+        float nbr = std::atof(rep.c_str());
+        if (rep == "nanf")
+            std::cout << "char :" << "impossible" <<"\n";
+        else
+            std::cout << "char :" << "Non displayable" <<"\n";
+        std::cout << "int :" << static_cast<int>(nbr)<< "\n";
+        std::cout << "float :" << (nbr)<< "\n";
+        std::cout << "double :" <<  static_cast<double>(nbr)<<"\n";
+    }
 }
