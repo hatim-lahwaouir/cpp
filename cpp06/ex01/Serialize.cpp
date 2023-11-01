@@ -1,6 +1,24 @@
 #include "Serialize.hpp"
 
 
+// OCF
+
+Serialize::Serialize(){};
+
+Serialize::Serialize(const Serialize &obj)
+{
+    (void)obj;
+}
+
+Serialize& Serialize::operator=(const Serialize &obj)
+{
+    (void)obj;
+    return (*this);
+}
+
+
+Serialize::~Serialize(){};
+
 uintptr_t Serialize::serialize(Data* ptr)
 {
     return (reinterpret_cast<uintptr_t>(ptr));

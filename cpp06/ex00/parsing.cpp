@@ -108,7 +108,9 @@ bool ScalarConverte::isFloatPseudo(const std::string &rep)
     }
     return (false);
 }
-
+// static cast -> it performs at compile time
+// it's used for conversions that are considered safe by the compiler
+// static_cast are checked by the compiler not like c cast style
 
 void        ScalarConverte::handlingPseudo(std::string &rep)
 {

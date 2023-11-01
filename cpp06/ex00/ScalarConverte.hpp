@@ -4,6 +4,7 @@
 # include "iostream"
 # include "sstream"
 # include "limits"
+
 class  ScalarConverte
 {
     public:
@@ -17,6 +18,11 @@ class  ScalarConverte
         static bool        isPseudo(const std::string &rep);
         static bool        isFloatPseudo(const std::string &rep);
         static void        handlingPseudo(std::string &rep);
+    // orthodox canonical form
+        ScalarConverte();
+        ScalarConverte(const ScalarConverte&);
+        ScalarConverte &operator =(const ScalarConverte&);
+        ~ScalarConverte();
 };
 
 #endif

@@ -19,6 +19,9 @@ Base * generate(void)
     return (new C());
 }
 
+//  dynamic_cast performs at run time and it also check if the casting is safe 
+//  for up and down cast if it's not it will return NULL for pointer and throw an exception for refrence
+
 void identify(Base* p)
 {
     if (!p)

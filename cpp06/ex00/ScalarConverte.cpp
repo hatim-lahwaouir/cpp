@@ -5,6 +5,19 @@ std::string ScalarConverte::newRep = "";
 std::string ScalarConverte::pseudoElements[] = {"-inff", "+inff", "-inf", "+inf", "nan", "nanf"};
 
 
+
+// OCF
+
+ScalarConverte::ScalarConverte(){}
+ScalarConverte::ScalarConverte(ScalarConverte const &obj){(void)obj;}
+ScalarConverte &ScalarConverte::operator=(ScalarConverte const &obj)
+{
+    (void)obj;
+    return (*this);
+}
+ScalarConverte::~ScalarConverte(){}
+
+
 // converting 
 void    toChar(std::string &rep)
 {
@@ -27,13 +40,8 @@ void    toFloat(std::string &rep)
     std::stringstream obj(rep); 
     float nbr;
     obj >> nbr;
-    if (obj.fail())
-        std::cout << "Overflow";
-    else
-    {
-        std::cout << nbr;
-        std::cout << "f";
-    }
+    std::cout << nbr;
+    std::cout << "f";
 }
 
 void    toDouble(std::string &rep)
@@ -95,6 +103,11 @@ void ScalarConverte::convert(std::string rep)
 
 int main(int ac, char **av)
 {
-    if (ac == 2)
-        ScalarConverte::convert(av[1]);
+    if(ac != 2)
+    {
+        std::cerr << "you must pass one argument!" << std::endl;
+        return (1);
+    }
+    ScalarConverte::convert(av[1]);
+
 }
