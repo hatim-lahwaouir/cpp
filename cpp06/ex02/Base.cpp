@@ -70,7 +70,9 @@ void identify(Base& p)
 
 int main()
 {
-    Base *p = NULL;
+
+    B obj;
+    Base &p = obj;
 
     identify(p);
 }

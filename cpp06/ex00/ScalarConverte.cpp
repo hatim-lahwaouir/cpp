@@ -24,6 +24,7 @@ void    toChar(std::string &rep)
     std::stringstream obj(rep);
     int nbr;
     obj >> nbr;
+    // fail return True if there was a logical error operation
     if (!obj.fail())
     {
         if (isprint(nbr))

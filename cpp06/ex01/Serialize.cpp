@@ -5,19 +5,6 @@
 
 Serialize::Serialize(){};
 
-Serialize::Serialize(const Serialize &obj)
-{
-    (void)obj;
-}
-
-Serialize& Serialize::operator=(const Serialize &obj)
-{
-    (void)obj;
-    return (*this);
-}
-
-
-Serialize::~Serialize(){};
 
 uintptr_t Serialize::serialize(Data* ptr)
 {

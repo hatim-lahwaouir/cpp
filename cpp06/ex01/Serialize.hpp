@@ -17,11 +17,8 @@ class Serialize
     public:
         static uintptr_t serialize(Data* ptr);
         static Data* deserialize(uintptr_t raw);
-    // OCF
+    private:
         Serialize();
-        Serialize(const Serialize &);
-        Serialize& operator=(const Serialize &);
-        ~Serialize();
 };
 
 #endif
