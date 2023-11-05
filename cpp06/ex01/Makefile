@@ -1,5 +1,5 @@
 NAME = serialize
-SRCS = Serialize.cpp
+SRCS = Serialize.cpp main.cpp
 OBJS = ${SRCS:%.cpp=%.o}
 CC = c++  
 FLAGS = -Wall -Wextra -Werror

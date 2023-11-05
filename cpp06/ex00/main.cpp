@@ -1,36 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Serialize.hpp                                      :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/05 01:08:42 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/11/05 01:08:43 by hlahwaou         ###   ########.fr       */
+/*   Created: 2023/11/05 01:08:23 by hlahwaou          #+#    #+#             */
+/*   Updated: 2023/11/05 01:08:24 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ScalarConverte.hpp"
 
-
-#ifndef SERIALIZE_HPP
-#define SERIALIZE_HPP
-
-# include "iostream"
-# include <stdint.h>
-
-typedef struct s_Data
+int main(int ac, char **av)
 {
-    void    *noRole;
-}   Data;
+    if(ac != 2)
+    {
+        std::cerr << "you must pass one argument!" << std::endl;
+        return (1);
+    }
+    ScalarConverte::convert(av[1]);
 
-
-class Serialize
-{
-    public:
-        static uintptr_t serialize(Data* ptr);
-        static Data* deserialize(uintptr_t raw);
-    private:
-        Serialize();
-};
-
-#endif
+}

@@ -1,5 +1,5 @@
 NAME =  Identify
-SRCS = Base.cpp  Others.cpp  
+SRCS = Base.cpp  Others.cpp  main.cpp
 OBJS = ${SRCS:%.cpp=%.o}
 CC = c++  
 FLAGS = -Wall -Wextra -Werror

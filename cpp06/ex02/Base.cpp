@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Base.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/05 01:08:45 by hlahwaou          #+#    #+#             */
+/*   Updated: 2023/11/05 01:11:17 by hlahwaou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Base.hpp"
 #include "Others.hpp"
 
@@ -64,15 +76,4 @@ void identify(Base& p)
     catch(const std::exception& e){ }
     
     std::cerr << "This object is neither of A,B or C" << std::endl;
-}
-
-
-
-int main()
-{
-
-    B obj;
-    Base &p = obj;
-
-    identify(p);
 }

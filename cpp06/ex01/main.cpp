@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Serialize.hpp                                      :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/05 01:08:42 by hlahwaou          #+#    #+#             */
-/*   Updated: 2023/11/05 01:08:43 by hlahwaou         ###   ########.fr       */
+/*   Created: 2023/11/05 01:10:24 by hlahwaou          #+#    #+#             */
+/*   Updated: 2023/11/05 01:10:32 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
+#include "Serialize.hpp"
 
-#ifndef SERIALIZE_HPP
-#define SERIALIZE_HPP
 
-# include "iostream"
-# include <stdint.h>
-
-typedef struct s_Data
+int main()
 {
-    void    *noRole;
-}   Data;
+    Data t1;
 
+    Data *ptr = &t1;
 
-class Serialize
-{
-    public:
-        static uintptr_t serialize(Data* ptr);
-        static Data* deserialize(uintptr_t raw);
-    private:
-        Serialize();
-};
+    std::cout << "->"<< ptr << std::endl;
 
-#endif
+    uintptr_t addrValue = Serialize::serialize(ptr); 
+    std::cout << "=>"<< addrValue << std::endl;
+
+    std::cout << "->" <<  Serialize::deserialize(addrValue) << std::endl;
+}

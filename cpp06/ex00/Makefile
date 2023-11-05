@@ -1,5 +1,5 @@
 NAME = convert
-SRCS = ScalarConverte.cpp  parsing.cpp
+SRCS = ScalarConverte.cpp  parsing.cpp main.cpp
 OBJS = ${SRCS:%.cpp=%.o}
 CC = c++  
 FLAGS = -Wall -Wextra -Werror

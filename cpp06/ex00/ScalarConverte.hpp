@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ScalarConverte.hpp                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/05 01:08:35 by hlahwaou          #+#    #+#             */
+/*   Updated: 2023/11/05 01:09:55 by hlahwaou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SCALARCONVERTE_HPP
 #define SCALARCONVERTE_HPP
 
 # include "iostream"
 # include "sstream"
-# include "limits"
 
 class  ScalarConverte
 {
@@ -18,11 +29,8 @@ class  ScalarConverte
         static bool        isPseudo(const std::string &rep);
         static bool        isFloatPseudo(const std::string &rep);
         static void        handlingPseudo(std::string &rep);
-    // orthodox canonical form
+    private:
         ScalarConverte();
-        ScalarConverte(const ScalarConverte&);
-        ScalarConverte &operator =(const ScalarConverte&);
-        ~ScalarConverte();
 };
 
 #endif

@@ -1,7 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Serialize.cpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/05 01:08:40 by hlahwaou          #+#    #+#             */
+/*   Updated: 2023/11/05 01:10:22 by hlahwaou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Serialize.hpp"
 
-
-// OCF
 
 Serialize::Serialize(){};
 
@@ -19,16 +29,3 @@ Data* Serialize::deserialize(uintptr_t raw)
 }
 
 
-int main()
-{
-    Data t1;
-
-    Data *ptr = &t1;
-
-    std::cout << "->"<< ptr << std::endl;
-
-    uintptr_t addrValue = Serialize::serialize(ptr); 
-    std::cout << "=>"<< addrValue << std::endl;
-
-    std::cout << "->" <<  Serialize::deserialize(addrValue) << std::endl;
-}

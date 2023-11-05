@@ -1,22 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ScalarConverte.cpp                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/05 01:08:32 by hlahwaou          #+#    #+#             */
+/*   Updated: 2023/11/05 01:08:33 by hlahwaou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ScalarConverte.hpp"
 
 std::string ScalarConverte::newRep = "";
 
 std::string ScalarConverte::pseudoElements[] = {"-inff", "+inff", "-inf", "+inf", "nan", "nanf"};
-
-
-
-// OCF
-
-ScalarConverte::ScalarConverte(){}
-ScalarConverte::ScalarConverte(ScalarConverte const &obj){(void)obj;}
-ScalarConverte &ScalarConverte::operator=(ScalarConverte const &obj)
-{
-    (void)obj;
-    return (*this);
-}
-ScalarConverte::~ScalarConverte(){}
-
 
 // converting 
 void    toChar(std::string &rep)
@@ -102,13 +100,3 @@ void ScalarConverte::convert(std::string rep)
     }
 }
 
-int main(int ac, char **av)
-{
-    if(ac != 2)
-    {
-        std::cerr << "you must pass one argument!" << std::endl;
-        return (1);
-    }
-    ScalarConverte::convert(av[1]);
-
-}
