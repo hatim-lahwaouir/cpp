@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 13:17:59 by hlahwaou          #+#    #+#             */
-/*   Updated: 2024/01/07 12:21:18 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2024/01/09 15:50:16 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ class Array
         Array(Array &obj)
         {
             arry = new T[obj.size()];
+            _size = obj.size();
             for (unsigned int i = 0; i < obj.size(); i++)
             {
                 arry[i] = obj.arry[i];
@@ -50,6 +51,7 @@ class Array
             if (this == &obj)
                 return (*this);
             delete arry;
+            this->_size = obj.size();
             this->arry = new T[obj.size()];
             for (unsigned int i = 0; i < obj.size(); i++)
             {
@@ -64,7 +66,7 @@ class Array
         }
         T &operator[](unsigned int index)
         {
-            if (index > this->size())
+            if (index >= this->size())
             {
                 IndexOutOfBounds obj;
                 throw(obj);
