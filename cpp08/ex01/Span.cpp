@@ -6,12 +6,14 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 13:15:51 by hlahwaou          #+#    #+#             */
-/*   Updated: 2024/01/12 14:51:29 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2024/01/12 15:58:57 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 
+
+// ******************* constructors ****************
 Span::Span(): maxElements(0), size(0) {}
 
 Span::Span(unsigned int N): maxElements(N) , size(0){}
@@ -31,6 +33,8 @@ Span &Span::operator=(const Span &obj)
     this->size = obj.size;
     return *this;
 }
+
+// ******************* Methods ****************
 
 void    Span::addNumber(int nbr)
 {

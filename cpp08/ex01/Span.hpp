@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 12:12:28 by hlahwaou          #+#    #+#             */
-/*   Updated: 2024/01/12 14:45:56 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2024/01/12 15:53:45 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ class Span
         unsigned int shortestSpan() const;
         unsigned int longestSpan() const;
         void        add_elements(const std::vector<int> &);
+        void        add_elements(const int ptr[]);
     class MaxElements : public std::exception
     {
         const char *what() const throw()

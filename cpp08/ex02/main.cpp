@@ -5,30 +5,34 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/12 13:18:24 by hlahwaou          #+#    #+#             */
-/*   Updated: 2024/01/12 15:59:57 by hlahwaou         ###   ########.fr       */
+/*   Created: 2024/01/12 17:20:58 by hlahwaou          #+#    #+#             */
+/*   Updated: 2024/01/12 17:46:10 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "iostream"
-#include "Span.hpp"
-
-
+#include "MutantStack.hpp"
 int main()
 {
-    Span obj(10);
-    int arr[] = {1,10,20,30,40,1};
-
-    std::vector<int> v(arr, arr + 6);
-
-    try
+    MutantStack<int> mstack;
+    mstack.push(5);
+    mstack.push(17);
+    std::cout << mstack.top() << std::endl;
+    mstack.pop();
+    std::cout << mstack.size() << std::endl;
+    mstack.push(3);
+    mstack.push(5);
+    mstack.push(737);
+    //[...]
+    mstack.push(0);
+    MutantStack<int>::iterator it = mstack.begin();
+    MutantStack<int>::iterator ite = mstack.end();
+    ++it;
+    --it;
+    while (it != ite)
     {
-        std::cout << obj.longestSpan() << '\n';
-        std::cout << obj.shortestSpan() << "\n";
+    std::cout << *it << std::endl;
+    ++it;
     }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
-
-}   
+    std::stack<int> s(mstack);
+return 0;
+}
