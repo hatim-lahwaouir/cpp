@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 13:18:24 by hlahwaou          #+#    #+#             */
-/*   Updated: 2024/01/12 15:59:57 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2024/01/19 10:02:47 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,34 @@ int main()
 
     try
     {
-        std::cout << obj.longestSpan() << '\n';
-        std::cout << obj.shortestSpan() << "\n";
+        std::cout << "The longest span : "<< obj.longestSpan() << '\n';
+        std::cout << "The shortest span : "<< obj.shortestSpan() << "\n";
     }
     catch(const std::exception& e)
     {
         std::cerr << e.what() << '\n';
     }
 
+    obj.add_elements(v);
+    try
+    {
+        std::cout << "The longest span : "<< obj.longestSpan() << '\n';
+        std::cout << "The shortest span : "<< obj.shortestSpan() << "\n";
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+
+    obj = Span(0);
+    try
+    {
+        obj.add_elements(v);
+        std::cout << "The longest span : "<< obj.longestSpan() << '\n';
+        std::cout << "The shortest span : "<< obj.shortestSpan() << "\n";
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
 }   

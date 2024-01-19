@@ -6,10 +6,14 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 12:12:59 by hlahwaou          #+#    #+#             */
-/*   Updated: 2024/01/12 12:13:09 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2024/01/19 09:36:16 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#ifndef EASYFIND_HPP
+#define EASYFIND_HPP
 
 #include "easyfind.tpp"
+
+
+#endif

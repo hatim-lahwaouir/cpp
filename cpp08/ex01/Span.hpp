@@ -6,11 +6,13 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 12:12:28 by hlahwaou          #+#    #+#             */
-/*   Updated: 2024/01/12 15:53:45 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2024/01/19 10:03:15 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#ifndef SPAN_HPP
+#define SPAN_HPP
+
 
 #include "iostream"
 #include "set"
@@ -37,7 +39,7 @@ class Span
     {
         const char *what() const throw()
         {
-            return ("Thre is no space for adding the number");
+            return ("Thre is no space left for adding numbers");
         }
     };
     class NoSpan : public std::exception
@@ -48,3 +50,6 @@ class Span
         }
     };
 };
+
+
+#endif

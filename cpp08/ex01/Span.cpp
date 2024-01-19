@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 13:15:51 by hlahwaou          #+#    #+#             */
-/*   Updated: 2024/01/12 15:58:57 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2024/01/19 10:02:06 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,7 @@ void    Span::addNumber(int nbr)
         size++;
     }
     else
-    {
         throw Span::MaxElements();
-    }
 }
 
 
@@ -84,5 +82,6 @@ void Span::add_elements(const std::vector<int> &v)
     if (this->size + v.size() > maxElements)
         throw Span::MaxElements();
     
+    this->size += v.size();
     this->elements.insert(v.begin(), v.end());
 }

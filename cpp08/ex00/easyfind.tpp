@@ -6,11 +6,12 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 10:21:05 by hlahwaou          #+#    #+#             */
-/*   Updated: 2024/01/12 12:00:17 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2024/01/19 09:36:28 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#ifndef EASYFIND_TPP
+#define EASYFIND_TPP
 
 #include "iostream"
 #include "algorithm"
@@ -22,3 +23,6 @@ typename T::const_iterator easyfind(T&container, int toFind)
     
     return it;    
 }
+
+
+#endif
