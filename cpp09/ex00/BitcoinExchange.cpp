@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 10:01:11 by hlahwaou          #+#    #+#             */
-/*   Updated: 2024/01/21 14:45:24 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2024/01/22 16:06:05 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,28 +55,12 @@ BitcoinExchange &BitcoinExchange::operator=(BitcoinExchange const &obj)
 }
 
 
-// ********************** Exceptions **************************
-
-const char * BitcoinExchange::InvalidFile::what() const throw()
-{
-    return ("An error occurred while opening the file");
-}
-
-const char * BitcoinExchange::InvalidDate::what() const throw()
-{
-    return ("Invalid date");
-}
-
-const char * BitcoinExchange::InvalidBitcoinValue::what() const throw()
-{
-    return ("Invalid Bitcoin value");
-}
 
 
 
 // ********************** validation **************************
 
-bool BitcoinExchange::day_validation(int day, int year, int mounth) const
+bool BitcoinExchange::day_validation(int day, int year, int mounth)
 {
     if (!(day >= 1 && day <= 31))
         return (false);
@@ -103,11 +87,24 @@ bool BitcoinExchange::day_validation(int day, int year, int mounth) const
 }
 
 
-long BitcoinExchange::date_format(const std::string &date) const
+long BitcoinExchange::date_format(std::string field)
 {
 
-    if (date.size() > 10 || date.size() == 0)
-        throw BitcoinExchange::InvalidDate();
+    int n_dash = 0;
+    if (field.size() < 8)
+        throw InvalidDate(field);
+    for(size_t i = 0; i < field.size(); i++)
+    {
+        if (field[i] == '-')
+            n_dash++;
+        else if (!std::isdigit(field[i]) && field[i] != ' ')
+            throw InvalidDate(field);
+        if (n_dash > 2)
+            throw(InvalidDate(field));
+    }
+    std::string date = field.substr(0, field.find(' '));
+    if (date.size() < 8 || date.size() > 10)
+        throw InvalidDate(date);
     std::string nbr;
     size_t      pos = date.find_first_of('-', 0);
     size_t      r = 0;
@@ -122,29 +119,29 @@ long BitcoinExchange::date_format(const std::string &date) const
     while (true)
     {
         pos = date.find_first_of('-', r);
-        std::cout << nbr << "\n";
         if (n == 3)
             break;
         nbr = date.substr(r, pos - r);
         // if we got an empty field or the size of numbers doesn't match
-        if (nbr.size() == 0 || n == 3)
-            throw BitcoinExchange::InvalidDate();
-        // checking if the day representation is good
+        if (nbr.size() == 0)
+            throw InvalidDate(date);
+        
+        // checking if the date representation is good
         if (n == 0 && (nbr.size() != 4 || std::atoi(nbr.c_str()) < 2009))
-            throw BitcoinExchange::InvalidDate();
+            throw InvalidDate(date);
         if (n == 1 && mounths.count(nbr) != 1)  
-            throw BitcoinExchange::InvalidDate();
+            throw InvalidDate(date);
         
         if (n == 2 && days.count(nbr) != 1)
-            throw BitcoinExchange::InvalidDate();
+            throw InvalidDate(date);
         
         if (n == 2 && !day_validation(std::atoi(nbr.c_str()), year, mounth))
-            throw BitcoinExchange::InvalidDate();
+            throw InvalidDate(date);
 
 
         for (size_t i = 0; i < nbr.size(); i++)
             if (!std::isdigit(nbr[i]))
-                throw BitcoinExchange::InvalidDate();
+                throw InvalidDate(date);
 
         if (n == 0)
             year = std::atoi(nbr.c_str());
@@ -157,14 +154,98 @@ long BitcoinExchange::date_format(const std::string &date) const
         n++;
     }
     if (year == 0 || day == 0 || mounth == 0)
-        throw BitcoinExchange::InvalidDate();   
+        throw InvalidDate(date);   
     return year * 10000 + mounth * 100 + day;
 }
 
-float BitcoinExchange::bitcoin_value_format(const std::string &date) const
+
+float BitcoinExchange::bitcoin_value_format(std::string btcValue)
 {
-    (void)date;
-    return (0.01);
+    // we are having a float number
+    if (btcValue.find('.') != std::string::npos)
+    {
+        size_t i = 0;
+        while (i < btcValue.size() && btcValue[i] == ' ')
+            i++;
+        if (i == btcValue.size() || !std::isdigit(btcValue[i]))
+            throw InvalidBitcoinValue(btcValue);
+        while (i < btcValue.size() && std::isdigit(btcValue[i]))
+            i++;
+        if (btcValue[i] != '.')
+            throw InvalidBitcoinValue(btcValue);
+        i++;
+        while (i < btcValue.size() && std::isdigit(btcValue[i]))
+            i++;
+        while (i < btcValue.size())
+        {
+            if (btcValue[i] != ' ')
+                throw InvalidBitcoinValue(btcValue);
+            i++;
+        }
+    }
+    // we are having an int number
+    else
+    {
+        size_t i = 0;
+        while (i < btcValue.size() && btcValue[i] == ' ')
+            i++;
+        if (i == btcValue.size() || !std::isdigit(btcValue[i]))
+            throw InvalidBitcoinValue(btcValue);
+        while (i < btcValue.size() && std::isdigit(btcValue[i]))
+            i++;
+        while (i < btcValue.size())
+        {
+            if (btcValue[i] != ' ')
+                throw InvalidBitcoinValue(btcValue);
+            i++;
+        }
+        std::string nbr = btcValue.substr(btcValue.find_first_of("0123456789"), btcValue.find_last_of("0123456789") + 1);
+        if (nbr.size() > 4)
+            throw InvalidBitcoinValue(btcValue);
+        int ret = std::atoi(nbr.c_str());
+        if (ret < 0 || ret > 1000)
+            throw InvalidBitcoinValue(btcValue); 
+        return (ret);
+    }
+
+    // if we are here we have a float
+    std::string nbr = (btcValue.substr(btcValue.find_first_of("0123456789"), btcValue.find_last_of("0123456789") + 1));
+
+    if (nbr.find('.') > 4)
+        throw InvalidBitcoinValue(btcValue);
+    
+    if (nbr.size() - nbr.find('.') - 1 >= 3)
+        nbr.erase(nbr.find('.') + 3, std::string::npos);
+    float ret = std::atof(nbr.c_str());
+    
+    if (ret < 0 || ret > 1000)
+    {
+        std::cout << nbr << '\n';
+        throw InvalidBitcoinValue(nbr);   
+    }
+    return (ret);
+}
+
+// reading headers 
+
+void  BitcoinExchange::read_header(char delimiter, std::ifstream& inputFile)
+{
+    std::string line;
+    std::getline(inputFile, line, '\n');
+
+    size_t delIndex = line.find(delimiter);
+    if (delIndex == std::string::npos)
+        throw InvalidHeader(line);
+
+    std::string date = trim(line.substr(0, delIndex));
+
+    if (date != "date" || delIndex + 1 >= line.size())
+        throw InvalidHeader(line);
+        
+    std::string value = trim(line.substr(delIndex + 1, std::string::npos)); 
+    if (value != "value")
+        throw InvalidHeader(line);
+    return;
 }
 
 // ********************* reading db file **************************
@@ -173,28 +254,64 @@ void BitcoinExchange::read_db()
 {
     std::ifstream db;
 
-    db.open(dbFileName);
+    db.open(this->dbFileName);
 
     if (!db.is_open())
-        throw BitcoinExchange::InvalidFile();
+        throw InvalidFile("we couldn't open the data base file");
 
     std::string line;
 
     while(std::getline(db, line, '\n'))
     {
         size_t idx = line.find(',');
-        if (idx == std::string::npos)
-            throw BitcoinExchange::InvalidDate();
 
-        std::string date = line.substr(0, idx);
-        long    key = date_format(date.substr(0, date.find(' ')));
-        float value = bitcoin_value_format(line.substr(idx + 1, std::string::npos));
-        this->db[key] = value;
+        long    key = date_format(line.substr(0, idx));
+
+        std::string btcvalue = line.substr(idx + 1, std::string::npos);
+        
+        this->db[key] = static_cast<float>(std::atof(btcvalue.c_str()));
     }
 }
 
+// ********************* reading input file **************************
 
+void BitcoinExchange::read_input(std::string fileName)
+{
+    std::ifstream inputFile;
 
+    inputFile.open(fileName);
+
+    if (!inputFile.is_open())
+        throw InvalidFile("we couldn't open the input file");
+
+    try
+    {
+        read_header('|',inputFile);
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    
+    std::string line;
+
+    while(std::getline(inputFile, line, '\n'))
+    {
+        size_t idx = line.find('|');
+
+    try
+    {
+        long    key = date_format(line.substr(0, idx));
+        float value =  bitcoin_value_format(line.substr(idx + 1, std::string::npos));
+        
+        std::cout << key <<  " " << value << "\n";
+    }
+    catch(std::exception &e)
+    {
+        std::cout << e.what() << "\n";
+    }
+    }
+}
 // ********************** Destructor *************
 
-BitcoinExchange::~BitcoinExchange(){}
+BitcoinExchange::~BitcoinExchange(){} 

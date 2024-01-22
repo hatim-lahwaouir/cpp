@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 09:47:37 by hlahwaou          #+#    #+#             */
-/*   Updated: 2024/01/21 13:03:17 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2024/01/22 16:05:56 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@
 # include "map"
 # include "set"
 # include <string>
+# include "BtcException.hpp"
+# include "sstream"
 
-
+std::string trim(std::string);
 class BitcoinExchange
 {
     // data base file
@@ -39,30 +41,22 @@ class BitcoinExchange
         BitcoinExchange(const BitcoinExchange&);
         BitcoinExchange& operator=(const BitcoinExchange&);
         ~BitcoinExchange();
+        
+
+        // reading headers
+        void read_header(char delimiterl, std::ifstream &);
         // reading data base 
         void    read_db();
 
-        // date validation
-        long    date_format(const std::string&) const;
-            // days validation by
-            bool    day_validation(int day, int year, int mounth) const;
-        // bitcoin value validation
-        float bitcoin_value_format(const std::string&) const;
+        // reading input file 
+        void    read_input(std::string inputFile);
         
-        class InvalidFile :public std::exception
-        {
-            const char *what() const throw();
-        };
-
-        class InvalidDate :public std::exception
-        {
-            const char *what() const throw();
-        };
-
-        class InvalidBitcoinValue :public std::exception
-        {
-            const char *what() const throw();
-        };
+        // date validation
+        long    date_format(std::string);
+            // days validation by
+            bool    day_validation(int day, int year, int mounth);
+        // bitcoin value validation
+        float bitcoin_value_format(std::string);
 
 };
 #endif

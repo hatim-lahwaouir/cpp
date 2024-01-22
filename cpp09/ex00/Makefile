@@ -1,11 +1,11 @@
 NAME = btc
-SRCS =  main.cpp BitcoinExchange.cpp
-OBJS = ${SRCS:%.cpp=%.o}
+SRCS =  BitcoinExchange.cpp BtcException.cpp    main.cpp trim.cpp
+OBJS = $(addprefix obj/,${SRCS:%.cpp=%.o})
 CC = c++
 FLAGS = -Wall -Wextra -Werror
 STD = -std=c++98
-INCLUDE = BitcoinExchange.hpp
-
+INCLUDE = BitcoinExchange.hpp BtcException.hpp
+OBJDIR = obj
 all : $(NAME)
 
 .PHONY : megaphone clean fclean re
@@ -13,7 +13,7 @@ all : $(NAME)
 $(NAME) : $(OBJS)
 	$(CC) $(FLAGS) $(STD) $(OBJS) -o $(NAME)
 
-%.o: %.cpp $(INCLUDE)
+$(OBJDIR)/%.o: %.cpp $(INCLUDE)
 	$(CC) -Wall -Wextra -Werror -std=c++98 -c $< -o $@
 
 clean :
