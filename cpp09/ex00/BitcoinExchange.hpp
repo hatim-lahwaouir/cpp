@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 09:47:37 by hlahwaou          #+#    #+#             */
-/*   Updated: 2024/01/22 16:05:56 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2024/01/22 16:41:33 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <string>
 # include "BtcException.hpp"
 # include "sstream"
+# include <algorithm>
 
 std::string trim(std::string);
 class BitcoinExchange

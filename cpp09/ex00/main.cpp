@@ -16,7 +16,6 @@ int main(int ac, char **av)
     {
         BitcoinExchange obj("data.csv");
         obj.read_db();
-        std::cout << "The CSV database has been successfully retrieved." << "\n";
         obj.read_input(av[1]);
     }
     catch(const std::exception& e)

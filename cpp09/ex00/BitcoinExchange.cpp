@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 10:01:11 by hlahwaou          #+#    #+#             */
-/*   Updated: 2024/01/22 16:06:05 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2024/01/23 09:02:07 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,24 +87,14 @@ bool BitcoinExchange::day_validation(int day, int year, int mounth)
 }
 
 
-long BitcoinExchange::date_format(std::string field)
+long BitcoinExchange::date_format(std::string date)
 {
 
-    int n_dash = 0;
-    if (field.size() < 8)
-        throw InvalidDate(field);
-    for(size_t i = 0; i < field.size(); i++)
-    {
-        if (field[i] == '-')
-            n_dash++;
-        else if (!std::isdigit(field[i]) && field[i] != ' ')
-            throw InvalidDate(field);
-        if (n_dash > 2)
-            throw(InvalidDate(field));
-    }
-    std::string date = field.substr(0, field.find(' '));
-    if (date.size() < 8 || date.size() > 10)
-        throw InvalidDate(date);
+    std::string badInput = "bad input => ";
+
+    date = trim(date);
+    if (date.size() < 8 && date.size() > 10)
+        throw Error(badInput + date);
     std::string nbr;
     size_t      pos = date.find_first_of('-', 0);
     size_t      r = 0;
@@ -116,32 +106,32 @@ long BitcoinExchange::date_format(std::string field)
     long mounth = 0;
 
 
-    while (true)
+    while (n < 3)
     {
         pos = date.find_first_of('-', r);
-        if (n == 3)
-            break;
+        if (n < 2 && pos == std::string::npos)
+            throw Error(badInput + date);
         nbr = date.substr(r, pos - r);
         // if we got an empty field or the size of numbers doesn't match
         if (nbr.size() == 0)
-            throw InvalidDate(date);
+            throw Error(badInput + date);
         
         // checking if the date representation is good
         if (n == 0 && (nbr.size() != 4 || std::atoi(nbr.c_str()) < 2009))
-            throw InvalidDate(date);
+            throw Error(badInput + date);
         if (n == 1 && mounths.count(nbr) != 1)  
-            throw InvalidDate(date);
+            throw Error(badInput + date);
         
         if (n == 2 && days.count(nbr) != 1)
-            throw InvalidDate(date);
+            throw Error(badInput + date);
         
         if (n == 2 && !day_validation(std::atoi(nbr.c_str()), year, mounth))
-            throw InvalidDate(date);
+            throw Error(badInput + date);
 
 
         for (size_t i = 0; i < nbr.size(); i++)
             if (!std::isdigit(nbr[i]))
-                throw InvalidDate(date);
+                throw Error(badInput + date);
 
         if (n == 0)
             year = std::atoi(nbr.c_str());
@@ -154,7 +144,7 @@ long BitcoinExchange::date_format(std::string field)
         n++;
     }
     if (year == 0 || day == 0 || mounth == 0)
-        throw InvalidDate(date);   
+        throw Error(badInput + date);   
     return year * 10000 + mounth * 100 + day;
 }
 
@@ -168,18 +158,18 @@ float BitcoinExchange::bitcoin_value_format(std::string btcValue)
         while (i < btcValue.size() && btcValue[i] == ' ')
             i++;
         if (i == btcValue.size() || !std::isdigit(btcValue[i]))
-            throw InvalidBitcoinValue(btcValue);
+            throw Error("Bad representation");
         while (i < btcValue.size() && std::isdigit(btcValue[i]))
             i++;
         if (btcValue[i] != '.')
-            throw InvalidBitcoinValue(btcValue);
+            throw Error("Bad representation");
         i++;
         while (i < btcValue.size() && std::isdigit(btcValue[i]))
             i++;
         while (i < btcValue.size())
         {
             if (btcValue[i] != ' ')
-                throw InvalidBitcoinValue(btcValue);
+                throw Error("Bad representation");
             i++;
         }
     }
@@ -189,22 +179,24 @@ float BitcoinExchange::bitcoin_value_format(std::string btcValue)
         size_t i = 0;
         while (i < btcValue.size() && btcValue[i] == ' ')
             i++;
+        if (i < btcValue.size() && btcValue[i] == '-')
+            throw Error("not a positive number");
         if (i == btcValue.size() || !std::isdigit(btcValue[i]))
-            throw InvalidBitcoinValue(btcValue);
+            throw Error("Bad representation");
         while (i < btcValue.size() && std::isdigit(btcValue[i]))
             i++;
         while (i < btcValue.size())
         {
             if (btcValue[i] != ' ')
-                throw InvalidBitcoinValue(btcValue);
+                throw Error("Bad representation");
             i++;
         }
         std::string nbr = btcValue.substr(btcValue.find_first_of("0123456789"), btcValue.find_last_of("0123456789") + 1);
         if (nbr.size() > 4)
-            throw InvalidBitcoinValue(btcValue);
+            throw Error("too large number");
         int ret = std::atoi(nbr.c_str());
         if (ret < 0 || ret > 1000)
-            throw InvalidBitcoinValue(btcValue); 
+            throw Error("too large number"); 
         return (ret);
     }
 
@@ -212,17 +204,14 @@ float BitcoinExchange::bitcoin_value_format(std::string btcValue)
     std::string nbr = (btcValue.substr(btcValue.find_first_of("0123456789"), btcValue.find_last_of("0123456789") + 1));
 
     if (nbr.find('.') > 4)
-        throw InvalidBitcoinValue(btcValue);
+        throw Error(btcValue);
     
     if (nbr.size() - nbr.find('.') - 1 >= 3)
         nbr.erase(nbr.find('.') + 3, std::string::npos);
     float ret = std::atof(nbr.c_str());
     
     if (ret < 0 || ret > 1000)
-    {
-        std::cout << nbr << '\n';
-        throw InvalidBitcoinValue(nbr);   
-    }
+        throw Error("too large number");   
     return (ret);
 }
 
@@ -235,16 +224,16 @@ void  BitcoinExchange::read_header(char delimiter, std::ifstream& inputFile)
 
     size_t delIndex = line.find(delimiter);
     if (delIndex == std::string::npos)
-        throw InvalidHeader(line);
+        throw Error("parssing the header");
 
     std::string date = trim(line.substr(0, delIndex));
 
     if (date != "date" || delIndex + 1 >= line.size())
-        throw InvalidHeader(line);
+        throw Error("parssing the header");
         
     std::string value = trim(line.substr(delIndex + 1, std::string::npos)); 
     if (value != "value")
-        throw InvalidHeader(line);
+        throw Error("parssing the header");
     return;
 }
 
@@ -257,7 +246,7 @@ void BitcoinExchange::read_db()
     db.open(this->dbFileName);
 
     if (!db.is_open())
-        throw InvalidFile("we couldn't open the data base file");
+        throw Error("we couldn't open the data base file");
 
     std::string line;
 
@@ -268,7 +257,6 @@ void BitcoinExchange::read_db()
         long    key = date_format(line.substr(0, idx));
 
         std::string btcvalue = line.substr(idx + 1, std::string::npos);
-        
         this->db[key] = static_cast<float>(std::atof(btcvalue.c_str()));
     }
 }
@@ -281,8 +269,11 @@ void BitcoinExchange::read_input(std::string fileName)
 
     inputFile.open(fileName);
 
+    int year;
+    int day;
+    int mounth;
     if (!inputFile.is_open())
-        throw InvalidFile("we couldn't open the input file");
+        throw Error("we couldn't open the input file");
 
     try
     {
@@ -299,17 +290,30 @@ void BitcoinExchange::read_input(std::string fileName)
     {
         size_t idx = line.find('|');
 
-    try
-    {
-        long    key = date_format(line.substr(0, idx));
-        float value =  bitcoin_value_format(line.substr(idx + 1, std::string::npos));
-        
-        std::cout << key <<  " " << value << "\n";
-    }
-    catch(std::exception &e)
-    {
-        std::cout << e.what() << "\n";
-    }
+        try
+        {
+            long    key = date_format(line.substr(0, idx));
+            float value =  bitcoin_value_format(line.substr(idx + 1, std::string::npos));
+            std::map<long,float>::iterator it = this->db.lower_bound(key);
+            if (it->first != key)
+                it--;
+            year = key / 10000;
+            mounth = (key/ 100) % 100;
+            day = key % 100;
+
+            std::cout << year << "-";
+            if (day < 10)
+                std::cout << '0';
+            std::cout << day << "-";
+            if (mounth < 10)
+                std::cout << '0';
+            std::cout << mounth;
+            std::cout << " => " << value << " = "<< it->second * value << std::endl;;
+        }
+        catch(std::exception &e)
+        {
+            std::cout << e.what() << "\n";
+        }
     }
 }
 // ********************** Destructor *************
