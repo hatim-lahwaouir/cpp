@@ -1,10 +1,10 @@
-NAME = RPN
-SRCS =  main.cpp RPN.cpp
+NAME = PmergeMe
+SRCS =  main.cpp PmergeMe.cpp
 OBJS = $(addprefix obj/,${SRCS:%.cpp=%.o})
 CC = c++
 FLAGS = -Wall -Wextra -Werror
 STD = -std=c++98
-INCLUDE = RPN.hpp
+INCLUDE = PmergeMe.hpp
 OBJDIR = obj
 all : $(OBJDIR) $(NAME)
 
