@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 14:46:04 by hlahwaou          #+#    #+#             */
-/*   Updated: 2024/01/26 09:03:46 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2024/01/26 11:14:41 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,51 @@
 
 #include "vector"
 #include "iostream"
+#include "limits"
 #include "utility"
 #include "algorithm"
+#include "deque"
+#include "list"
+#include "sstream"
 
 # include "MergeSort.tpp"
-# include "JacobsthalNumberGenerator.hpp"
+# include "JacobsthalNumberGenerator.tpp"
 
 
-class PmergeMe
+class VPmergeMe
 {
     std::vector<int> v;
     std::vector<int> res;
 
 
     
-    PmergeMe();
+    VPmergeMe();
     public:
-        PmergeMe(const std::vector<int>::iterator, const std::vector<int>::iterator);
-        PmergeMe(PmergeMe const &);
-        PmergeMe& operator=(PmergeMe const &);
-        ~PmergeMe();
+        VPmergeMe(const std::list<int>::iterator, const std::list<int>::iterator);
+        VPmergeMe(VPmergeMe const &);
+        VPmergeMe& operator=(VPmergeMe const &);
+        ~VPmergeMe();
         void    pmerge();
+        const std::vector<int> &getResult();
+};
+
+
+class DPmergeMe
+{
+    std::deque<int> v;
+    std::deque<int> res;
+
+
+    
+    DPmergeMe();
+    public:
+        DPmergeMe(const std::list<int>::iterator, const std::list<int>::iterator);
+        DPmergeMe(DPmergeMe const &);
+        DPmergeMe& operator=(DPmergeMe const &);
+        ~DPmergeMe();
+        void    pmerge();
+        const std::deque<int> &getResult();
+
 };
 
 #endif

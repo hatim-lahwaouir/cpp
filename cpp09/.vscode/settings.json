@@ -68,6 +68,7 @@
         "vector": "cpp",
         "set": "cpp",
         "filesystem": "cpp",
-        "*.tpp": "cpp"
+        "*.tpp": "cpp",
+        "list": "cpp"
     }
 }
