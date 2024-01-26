@@ -6,20 +6,23 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 08:58:38 by hlahwaou          #+#    #+#             */
-/*   Updated: 2024/01/25 10:00:49 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2024/01/26 08:56:59 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "JacobsthalNumberGenerator.hpp"
 
-JacobsthalNumberGenerator::JacobsthalNumberGenerator(size_t N)
+JacobsthalNumberGenerator::JacobsthalNumberGenerator(int N)
 {
+    
     _v.push_back(1);
-    _v.push_back(1);
+    _v.push_back(3);
+    int i = 2;
 
-    for (size_t i = 2; i <= N; i++)
+    while(_v.back() <= N)
     {
-        _v[i] = _v[i - 1] + _v[i - 2] * 2;
+        _v.push_back(_v[i - 1] + _v[i - 2] * 2);
+        i++;
     }
 }
 

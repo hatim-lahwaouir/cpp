@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 14:46:04 by hlahwaou          #+#    #+#             */
-/*   Updated: 2024/01/25 09:59:40 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2024/01/26 09:03:46 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,13 @@
 
 # include "MergeSort.tpp"
 # include "JacobsthalNumberGenerator.hpp"
+
+
 class PmergeMe
 {
     std::vector<int> v;
+    std::vector<int> res;
+
 
     
     PmergeMe();

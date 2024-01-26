@@ -1,10 +1,10 @@
 NAME = PmergeMe
-SRCS =  main.cpp PmergeMe.cpp
+SRCS =  main.cpp JacobsthalNumberGenerator.cpp PmergeMe.cpp
 OBJS = $(addprefix obj/,${SRCS:%.cpp=%.o})
 CC = c++
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -fsanitize=address
 STD = -std=c++98
-INCLUDE = PmergeMe.hpp
+INCLUDE = JacobsthalNumberGenerator.hpp PmergeMe.hpp
 OBJDIR = obj
 all : $(OBJDIR) $(NAME)
 
