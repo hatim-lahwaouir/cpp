@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 14:49:33 by hlahwaou          #+#    #+#             */
-/*   Updated: 2024/01/26 11:05:40 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2024/01/27 08:37:56 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,8 @@ void    VPmergeMe::pmerge()
 
 
     res.push_back(p[0].second);
-    for (size_t i = 1; i < p.size(); i++)
+    for (size_t i = 0; i < p.size(); i++)
         res.push_back(p[i].first);
-
     // if the size of the vector wasn't pair
     if (v.size() % 2 != 0)
         p.push_back(std::make_pair(v.back(), v.back()));

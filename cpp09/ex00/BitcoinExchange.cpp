@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 10:01:11 by hlahwaou          #+#    #+#             */
-/*   Updated: 2024/01/23 09:02:07 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2024/01/27 09:10:43 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -282,6 +282,7 @@ void BitcoinExchange::read_input(std::string fileName)
     catch(const std::exception& e)
     {
         std::cerr << e.what() << '\n';
+        return;
     }
     
     std::string line;

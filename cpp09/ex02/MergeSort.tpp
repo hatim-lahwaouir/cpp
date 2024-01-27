@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 15:05:50 by hlahwaou          #+#    #+#             */
-/*   Updated: 2024/01/25 08:44:45 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2024/01/27 08:43:40 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ class MergeSort
             merge(r, l, v);
         }
         MergeSort(T &v) : _v(v) {}
-        // calling sort if you want you vector to be sorted
+        // calling sort if you want you container to be sorted
         void    sort()
         {
             MergeSort::merge_sort(_v);

@@ -6,7 +6,7 @@
 /*   By: hlahwaou <hlahwaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 14:47:18 by hlahwaou          #+#    #+#             */
-/*   Updated: 2024/01/26 11:21:10 by hlahwaou         ###   ########.fr       */
+/*   Updated: 2024/01/27 09:09:41 by hlahwaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,28 @@ static bool check(std::string s)
     return (true);
 }
 
-static void PrintFormat(const std::vector<int> &v, const std::deque<int> &d)
+static void SortingInfos(VPmergeMe &v, DPmergeMe &d)
 {
-    for (size_t i = 0; i < v.size(); i++)
-    {
-        std::cout << v[i] << ' ';
-    }
+    clock_t start_v,end_v;
+    clock_t  start_d,end_d;
+
+    start_v = clock();
+    v.pmerge();
+    end_v = clock();
+
+
+    start_d = clock();
+    d.pmerge();
+    end_d = clock();
+
+    const std::vector<int> &_v = v.getResult();
+    std::cout << "after: ";
+    for (size_t i = 0; i < _v.size(); i++)
+        std::cout << _v[i] << " ";
     std::cout << std::endl;
-    
-    for (size_t i = 0; i < d.size(); i++)
-    {
-        std::cout << d[i] << ' ';
-    }
+    std::cout << "Time to process a range of "<< _v.size() << " elements with std::vector :" << ((double)(end_v - start_v) / 1000) << " us" << std::endl;
+    std::cout << "Time to process a range of "<< _v.size() << " elements with std::deque  :"  << ((double)(end_d - start_d) / 1000) << " us" <<std::endl;
+
 }
 
 int main(int ac, char **av)
@@ -78,7 +88,7 @@ int main(int ac, char **av)
         int nbr = ::atoi_(av[i],gd);
         if (gd == false)
         {
-            std::cerr << "Error" << std::endl;
+            std::cerr << "Input must contains only digits" << std::endl;
             return (1);
         }
         nums.push_back(nbr);
@@ -86,11 +96,13 @@ int main(int ac, char **av)
     }
     
 
+    std::cout << "Before: ";
+    for (int i = 1; i < ac; i++)
+        std::cout << av[i] << " ";
+    std::cout << std::endl;
     VPmergeMe v(nums.begin(), nums.end());
     DPmergeMe d(nums.begin(), nums.end());
-
-    v.pmerge();    
-    d.pmerge();    
-
-    PrintFormat(v.getResult(), d.getResult());
+ 
+    SortingInfos(v, d);
+    return (0);
 }
